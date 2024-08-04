@@ -1,3 +1,4 @@
+
 import random  #this will allow us to work with anything that's required to be random
 import time    #this will allow us to add artificial pauses & delays in Cosmic's responses, along with info about the time
 
@@ -31,7 +32,7 @@ IOFF => "\033[23m"
 user_name = None   
 
 
-#responses the bot uses. Outside of any function becuase two functions use it
+#responses the bot uses. Outside of any function because two functions use it
 responses = {                                                               
     "hello": ["Hello!", "Hi there!", "Hey! How can I help you today?"],
 
@@ -153,7 +154,7 @@ def get_response(user_input):
     
     #introduction
     elif "introduc" in user_input or "who are you" in user_input:                   
-        return "I'm Cosmic, a chatbot! How can i help you today?"
+        return "I'm Cosmic, a chatbot! How can I help you today?"
     
     #basic calculator
     elif "calc" in user_input:                                                      
@@ -263,7 +264,7 @@ def quiz():
         6: "What disease causes the brain to shrink?\n\t\ta. Rabies\n\t\tb. Bell's Palsy\n\t\tc. BTS Army\n\t\td. Alzheimer's",
         7: "How many bones do sharks have?\n\t\ta. 69\n\t\tb. 420\n\t\tc. 367\n\t\td. They don't have any bones",
         8: "Where is \"Batman\" city located?\n\t\ta. Turkey\n\t\tb. Cyprus\n\t\tc. North Korea\n\t\td. South Korea",
-        9: "Where is Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch located?\n\t\ta. Wales\n\t\tb. Larkana\n\t\tc. Ireland\n\t\td. Uganda",
+        9: "Where is niger located?\n\t\ta. Wales\n\t\tb. Larkana\n\t\tc. Ireland\n\t\td. Africa",
         10: "Which animal can use its tongue to clean its ears?\n\t\ta. Giraffe\n\t\tb. Jellyfish\n\t\tc. Guinea Pig\n\t\td. Cockroach",
         11: "Where is Shitterton located?\n\t\ta. England\n\t\tb. Wales\n\t\tc. Scotland\n\t\td. India",
         12: "What is a group of flamingos called??\n\t\ta. Pink Party\n\t\tb. Flamboyance\n\t\tc. Dong\n\t\td. Daddies",
@@ -414,7 +415,7 @@ def tictactoe():
                     value = int(input("\033[1m\033[31mX\033[37m\033[22m        "))
                     time.sleep(0.1)
                 except:
-                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1)
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number:"), time.sleep(0.1)
                     continue
                 
                 if (value <= 9) and (value >= 1):
@@ -427,7 +428,7 @@ def tictactoe():
                     x_state[value-1] = 1
 
                 else:
-                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1) 
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number:"), time.sleep(0.1) 
                     continue      
 
                 break
@@ -441,7 +442,7 @@ def tictactoe():
                     value = int(input("\033[1m\033[32mO\033[37m\033[22m        "))
                     time.sleep(0.1)
                 except:
-                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Please enter a valid number"), time.sleep(0.1)
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Please enter a valid number:"), time.sleep(0.1)
                     continue
                 
                 if (value <= 9) and (value >= 1):
@@ -454,7 +455,7 @@ def tictactoe():
                     o_state[value-1] = 1
 
                 else:
-                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1)
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number:"), time.sleep(0.1)
                     continue
 
                 break
@@ -494,12 +495,12 @@ def chatbot_songs():
         #dictionary of all song recommendations
         recommendations={
             "indie": [" Dog Days Are Over by Florence The Machine", "Young Lion by Vampire Weekend", "First Day of My Life by Bright Eyes"],
-            "rock": [" Hotel California by Eagles", "Everlong by Foo Fighters", "Back in Black by AC/DC "],
+            "rocby Avik": [" Hotel California by Eagles", "Everlong by Foo Fighters", "Back in Black by AC/DC "],
             "pop": [" Levitating by Dua Lipa", "Shape of You by Ed Sheeran", "Bad Guy by Billie Eilish "],
             "classical": ["Clair de Lune by Claude Debussy", "Symphony No. 9 in D Minor, Op. 125 (Ode to Joy) by Ludwig van Beethoven", "The Four Seasons by Antonio Vivaldi"],
             "jazz": [" Take Five by Dave Brubeck", "So What by Miles Davis", "My Favorite Things by John Coltrane"],
             "hip hop": [" Sicko Mode by Travis Scott", "Lose Yourself by Eminem"," HUMBLE. by Kendrick Lamar "],
-            "electronic": [" Strobe by Deadmau5", "Titanium by David Guetta ft. Sia", "Levels by Avicii"],
+            "electronic": [" Strobe by Deadmau5", "Titanium by David Guetta ft. Sia", "Levels cii"],
             "folk": [" The A Team by Ed Sheeran", "If I Had a Boat by Lyle Lovett", "The Night We Met by Lord Huron"],
             "r&b": [" Ordinary People by John Legend", "We Belong Together by Mariah Carey", "U Got It Bad by Usher "],
             "acoustic": [" Fast Car by Tracy Chapman", "Blackbird by The Beatles", "Heartbeats” by José González"],
