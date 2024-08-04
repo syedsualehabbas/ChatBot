@@ -1031,8 +1031,8 @@ def chad():
         else:
             print("\033[1m\033[31mChad\033[37m\033[22m     Say something comprenshible for once."), time.sleep(0.1)                
 
-
-def main():
+#to call out each function - DONE
+def main(): 
     print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mLoading \033[3m\033[34mCosmic\033[37m\033[23m"), time.sleep(1.5)
     print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mLoading completed\033[23m"), time.sleep(0.2)
     print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Welcome [user]!"), time.sleep(0.1)
@@ -1042,48 +1042,60 @@ def main():
     while True:
         user_input = input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").lower()
 
+        # to call for guess the number game
         if user_input in ["game1", "game 1", "guess the number", "g1", "game_1"]:
             print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Loading Game 1 -- Guess the Number", end="\r"), time.sleep(0.6)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Loading complete!                  ", end="\r"), time.sleep(0.6)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Game 1 -- Cosmic's Guess the Number          "), time.sleep(0.2)
             guess_the_number()
 
+        # to call for guess quiz
         elif user_input in ["game2", "game 2", "quiz", "g2", "game_2"]:
             time.sleep(0.1)
             print(quiz())
 
+        # to call for tictactoe
         elif user_input in ["game3", "game 3", "tic-tac-toe", "g3", "game_3", "tictactoe", "tic tac toe"]:
             print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Loading Game 3 -- Tic-Tac-Toe", end="\r"), time.sleep(0.6)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Loading complete!             ", end="\r"), time.sleep(0.6)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Game 3 -- 2 Player Tic-Tac-Toe          "), time.sleep(0.2)
             tictactoe()
 
+        # to call for guess the song game
         elif user_input in ["game4", "game 4", "guess the song", "g4", "game_4"]:
             time.sleep(0.1)
             print(guess_the_song())
 
+        # to date
         elif "a date" in user_input or "date me" in user_input:
             time.sleep(0.1)
-            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   {random.choice(responses["date"])}")           
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   {random.choice(responses["date"])}")      
 
+        # for day date month and time
         elif "year" in user_input or "time" in user_input or "date" in user_input or "month" in user_input or "day" in user_input:
             what_time(user_input)
 
+        # to activate chad
         elif user_input == "sys ac chad" or user_input == "activate chad":
             chad()
 
+        # to call for song recommendation
         elif "song" in user_input:
             print(chatbot_songs())
 
+        # to call for movie recommendation
         elif "movie" in user_input:
             print(chatbot_movie())
 
+        # to call for book recommendation
         elif "book" in user_input:
             print(chatbot_book())
 
+        # to call for health checkup (bmi)
         elif "bmi" in user_input:
             bmi_check()
 
+        # goodbye forgodsake gooooo
         elif "bye" in user_input:
             time.sleep(0.1)
             print(f"\033[1m\033[34mCosmic\033[37m\033[22m   {random.choice(responses['goodbye'])}")
@@ -1095,7 +1107,7 @@ def main():
             print("\033[1m\033[34mCosmic\033[37m\033[22m  ", response)
             
 
-
+# thank god 
 main()
 
 # \033[1m\033[90mYou\033[37m\033[22m --  Replace with "You:" when working on the program
