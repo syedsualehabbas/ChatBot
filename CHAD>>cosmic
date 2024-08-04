@@ -523,11 +523,13 @@ def guess_the_song():
 
 
 #2 player tic-tac-toe. Basic functionality learnt from CodeWithHarry's tutorial. Upgraded by ourselves (error checking, better drawing system, etc.)
-def tictactoe():    
+def tictactoe():    # - DONE
 
+    #to check if the required three values of x_state or o_state add up to 3 or not
     def sum(a,b,c):
        return a+b+c
 
+    #design of board
     def board(x_state, o_state):
         one =   '\033[31mX\033[37m'    if x_state[0]        else ('\033[32mO\033[37m' if o_state[0] else 1) 
         two =   '\033[31mX\033[37m'    if x_state[1]        else ('\033[32mO\033[37m' if o_state[1] else 2) 
@@ -546,19 +548,27 @@ def tictactoe():
         print("\t\t———|———|———"), time.sleep(0.05)
         print(f"\t\t {seven} | {eight} | {nine} \n"), time.sleep(0.05)
 
+    # the indexes of x and o in which user will win
     def check_win(x_state, o_state):
         wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
 
+        # if x wins 
         for win in wins:
+            # if the winning indexes add to 3 the x wins
            if(sum(x_state[win[0]], x_state[win[1]], x_state[win[2]])==3):
               return 1
+
+        #if o wins
+        # if the winning indexes add to 3 the o wins
            elif(sum(o_state[win[0]], o_state[win[1]], o_state[win[2]])==3):
               return 0   
 
         return -1
-
+    # presentation of board changes when user inputs a number
     x_state =[0,0,0,0,0,0,0,0,0] 
     o_state =[0,0,0,0,0,0,0,0,0]
+
+    # no of turns in game total
     turn = 9 
 
     print("\033[1m\033[34mCosmic\033[37m\033[22m   Grab your closest habibi and get ready to play Tic Tac Toe!"), time.sleep(0.1)
@@ -566,7 +576,7 @@ def tictactoe():
     board(x_state, o_state)
 
     while True:
-
+        
         if (turn%2 != 0):
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   X's Turn"), time.sleep(0.1)
@@ -574,10 +584,13 @@ def tictactoe():
                 try:
                     value = int(input("\033[1m\033[31mX\033[37m\033[22m        "))
                     time.sleep(0.1)
+
+                #user inputs something except for 1 to 9
                 except:
                     print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1)
-                    continue
-                
+                    continue   #takes to top of program to add the number again
+
+                #if user has already input a number here before
                 if (value <= 9) and (value >= 1):
                     if o_state[value-1] == 1:
                         print("\033[1m\033[34mCosmic\033[37m\033[22m   [O] has already made a move there, try another location."), time.sleep(0.1)
@@ -586,11 +599,11 @@ def tictactoe():
                         print("\033[1m\033[34mCosmic\033[37m\033[22m   You've already made a move there, try another location."), time.sleep(0.1)
                         continue
                     x_state[value-1] = 1
-
+                #if user enters number except for given numbers
                 else:
                     print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1) 
                     continue      
-
+                #break da prog
                 break
 
         else:
@@ -604,7 +617,8 @@ def tictactoe():
                 except:
                     print("\033[1m\033[34mCosmic\033[37m\033[22m   Please enter a valid number"), time.sleep(0.1)
                     continue
-                
+
+                #if user input same number again duhhh
                 if (value <= 9) and (value >= 1):
                     if x_state[value-1] == 1:
                         print("\033[1m\033[34mCosmic\033[37m\033[22m   [X] has already made a move there, try another location."), time.sleep(0.1)
@@ -618,29 +632,35 @@ def tictactoe():
                     print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1)
                     continue
 
-                break
+                break    #breakin freee
 
+        #board updates asuser makes responses and prints again
         board(x_state, o_state)
 
+        #when x wins
         cwin = check_win(x_state,o_state)
         if cwin == 1:
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   X won!"), time.sleep(0.2)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   What else can I do for you?")
             break
+
+        #when o wins
         elif cwin == 0:
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   O won!"), time.sleep(0.2)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   What else can I do for you?")
             break
 
+        #turn decreases
         turn -= 1
 
+        # if match draws
         if turn == 0:
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Valiant efforts, but unfortunately it ended in a draw."), time.sleep(0.2)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   What else can I do for you?")
-            break
+            break   #end the damn game
 
 
 #function to recommend songs - DONE
