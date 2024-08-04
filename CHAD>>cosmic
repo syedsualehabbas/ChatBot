@@ -216,7 +216,7 @@ def guess_the_number():
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Please enter a valid number."), time.sleep(0.1)                        
             continue
-        
+        #add +1 the user makes an attempt
         attempts += 1
 
         #Checks if the guess is correct, high, or low.
@@ -245,8 +245,9 @@ def guess_the_number():
     print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Anything else I could do for you?"), time.sleep(0.1)
 
 
-#function for quiz game
+#function for quiz game - DONE
 def quiz():
+    #questions for quiz
     q_prompts = {
         1: "Which country has the highest life expectancy?\n\t\ta. Honk Kong\n\t\tb. Macao\n\t\tc. Japan\n\t\td. Pakistan",
         2: "What is the fear of fun called?\n\t\ta. Phophophophobia\n\t\tb. Cherophobia\n\t\tc. Nawaz Sharif\n\t\td. Emetophobia",
@@ -274,7 +275,7 @@ def quiz():
         24: "Which animal has eyes bigger than its brain?\n\t\ta. Lion\n\t\tb. Gorilla\n\t\tc. Kangaroo\n\t\td. Flamingo",
         25: "Deaf people are known to do what during their sleep?\n\t\ta. Pee themselves\n\t\tb. Use sign language\n\t\tc. Cry like babies\n\t\td. All of the above"
     }
-
+    #answers for quiz
     q_ans = {
         1: "a",                 2: "b",                 3: "a",                 4: "d",                 5: "c",
         6: "d",                 7: "d",                 8: "a",                 9: "c",                 10: "a",
@@ -282,41 +283,50 @@ def quiz():
         16: "a",                17: "a",                18: "a",                19: "b",                20: "b",
         21: "b",                22: "c",                23: "a",                24: "d",                25: "b",
     }
-    
+    #prints the loading of code
     print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Loading Game 2 - A Simple Quiz", end="\r"), time.sleep(0.6)
     print("\033[1m\033[34mCosmic\033[37m\033[22m   Loading complete!               ", end="\r"), time.sleep(0.6)
     print("\033[1m\033[34mCosmic\033[37m\033[22m   Game 2 -- Cosmic's Quiz         "),time.sleep(0.2)
     print("\033[1m\033[34mCosmic\033[37m\033[22m   Choose a mode (1 or 2)\n\t Mode 1: Random question (1)\n\t Mode 2: All questions   (2)")
-                                                                                                                        
+     #to run an infinite loop                                                                                                                   
     while True:
-        try:
+        #checks whether user wrote 1 or 2 mode
+        try: 
+        # if 1 or 2 mode the program breaks and goes to desired mode
             q_mode = int(input("\033[\033[1m\033[90mYou\033[37m\033[22m      "))
             if q_mode == 1 or q_mode == 2:
                 break
+            #if user puts something except for 1 or 2
             else:
                 time.sleep(0.1)
                 print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Pick '1' or '2'")
+                #continue takes back to top of loop to ask for mode again
                 continue
+        #builtin function that gives error when user puts string instead of integer
         except ValueError:
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   You have to enter an integer. Pick '1' or '2'")
             continue
-
+    #for mode 1 
     if q_mode == 1:
         time.sleep(0.1)    
         print("\033[1m\033[34mCosmic\033[37m\033[22m   Sure! I'll ask a question, and you'll answer 'a', b', 'c', or 'd'.")    
         
         while True:
+            #randint builtin function that selects number of quiz question from 1 to 25
             q_no = random.randint(1, 25)
             time.sleep(0.1)
             print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Q: {q_prompts[q_no]}"), time.sleep(0.1)
 
+            #prints user response to question
             q_user_ans = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
 
+            #if answer of user is correct
             if q_user_ans == q_ans[q_no]:
                 time.sleep(0.1)
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's right!.")
 
+            #if answer of user is incorrect
             else:
                 time.sleep(0.1)
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's unfortunately incorrect. \"{q_ans[q_no]}\" was the correct answer.")
@@ -328,34 +338,42 @@ def quiz():
                 time.sleep(0.1)
                 q_play = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
                 if q_play == "yes" or q_play =="y":
-                     break                 
+                     break     #takes to top of program                
                 elif q_play == "no" or q_play =="n":
                     time.sleep(0.1)
                     return "\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+                #if user types something except for yes or no
                 else:
                     time.sleep(0.1)
                     print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Please type 'Yes' or 'No'")
                 
-
+    # for mode 2
     if q_mode == 2:
         time.sleep(0.1)
         print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Lets get to it then. Answer with 'a', b', 'c', or 'd'. Type \"Stop\" to end the game at anytime.")
 
+        #to show questions from 1 to 25
         for q_auto in range(1,26,1):
             time.sleep(0.1)
             print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Q{q_auto}: {q_prompts[q_auto]}"), time.sleep(0.1)
             q_user_ans = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
 
+            #if user answer is correct
             if q_user_ans == q_ans[q_auto]:
                 time.sleep(0.1)
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's right!")
+
+            #if user doesnt want to play anymore
             elif "stop" in q_user_ans:
                 time.sleep(0.1)
                 return "\033[1m\033[34mCosmic\033[37m\033[22m   We'll end it here then! What else can I do for you?"
+
+            #if user's answer is incorrect
             else:
                 time.sleep(0.1)
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's unfortunately incorrect. \"{q_ans[q_auto]}\" was the correct answer.")
 
+        #sowwrrryy questions finished
         time.sleep(0.1)
         return "\033[1m\033[34mCosmic\033[37m\033[22m   That's all the questions I have for you right now. Anything else I could help you with?"
 
