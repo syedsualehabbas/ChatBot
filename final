@@ -1,0 +1,855 @@
+
+import random  #this will allow us to work with anything that's required to be random
+import time    #this will allow us to add artificial pauses & delays in Cosmic's responses, along with info about the time
+
+#these are the color codes (escape keys) we have used can use
+""" 
+--------------------------------------------------
+-------------------------->>>>>> text color <<<<<<           
+RED    => "\033[31m"
+GREEN  => "\033[32m"
+BLUE   => "\033[34m"
+PURPLE => "\033[35m"
+WHITE  => "\033[37m"
+GREY   => "\033[90m"
+
+---------------------------------------------
+--------------------------->>>>>> bold <<<<<<
+B    => "\033[1m"
+BOFF => "\033[22m"
+
+------------------------------------------------
+--------------------------->>>>>> italics <<<<<<
+I => "\033[3m",
+IOFF => "\033[23m"
+
+"""
+#actual program starts from here
+#-------------------------------
+
+
+#global variable to make sure the get_responses function does not override any addition
+user_name = None   
+
+
+#responses the bot uses. Outside of any function becuase two functions use it
+responses = {                                                               
+    "hello": ["Hello!", "Hi there!", "Hey! How can I help you today?"],
+
+    "thanks":["You're Welcome! Is there something else I can help you with?",
+              "Anytime! If you need anything else, feel free to ask.",
+              "You're very welcome! If you ever need anything, I'm here for you.",
+              "Glad to help!"],
+
+    "facts":["The largest desert in the world is the Antarctic Desert.", "The Great Barrier Reef is the world's largest living structure, visible from space.",
+             "Greenland is the world's largest island that is not a continent.","Istanbul, Turkey, is the only city in the world that spans two continents — Europe and Asia.",
+             "Israel is not a country","Vatican City is the smallest independent state in the world by both area and population.",
+             "Flies can accidently twist their heads off.", "Tomatoes are fruits.", "Australia is wider than the moon.", "The national animal of Scotland is a unicorn.",
+             "Adolf Hitler was nominated for the Nobel Peace Prize", "The world's largest waterfall is underwater"],
+
+    "goodbye": ["Goodbye! Have a great day!", "See you later! Take care!", "It was nice talking to you! Goodbye!"],
+
+    "jokes":["What happens to illegally parked frog?         It gets toad away.",
+             "Why can't you trust an atom?\n         Because they make up literally everything.",
+             "What do you call a hippie's wife?\n         Mississippi.",
+             "What do you call a bear with no teeth?\n         A gummy bear.",
+             "What do fish say when they hit a concrete wall?\n         Dam!",
+             "The claustrophobic astronaut?\n         He just wanted a little more space.",
+             "I don't trust stairs.\n         They're always up to something.",
+             "Your life."],
+
+    "date": ["Date? Sorry I have a girlfriend", "Date? Nah im not hungry", "Date? Maybe next time ;)"],
+    
+    "default": ["I'm sorry, I don't understand that. Type \"cmds\" for a list of commands I can respond to.", "I didn't quite catch that. Type \"cmds\" for a list of commands I can respond to"],
+    }
+
+
+#this function is the primary source of generic responses of Cosmic
+def get_response(user_input):
+    
+    #list all currently implemented commands
+    if "commands" in user_input or "cmds" in user_input:                            
+        print ("\033[1m\033[34mCosmic\033[37m\033[22m   Here is a list of all the commands you can use:")
+        time.sleep(0.1)
+        return """——————————————————————————————————————————————————————————————————
+         Hello / Hi / Salam   | How are you          | Introduce
+         ——————————————————————————————————————————————————————————————————
+         Calculator(calc)     | Commands(cmds)       | My Name is
+         ——————————————————————————————————————————————————————————————————
+         What's my name       | BMI                  | Facts
+         ——————————————————————————————————————————————————————————————————
+         Date Me?             | Jokes                | Bye 
+         ——————————————————————————————————————————————————————————————————
+         Date today           | Time                 | Year
+         ——————————————————————————————————————————————————————————————————
+         Month                | Day                  | I'm bored              
+         ——————————————————————————————————————————————————————————————————
+         Book Recommendation  | Songs Recommendation | Movie Recommendation
+         ——————————————————————————————————————————————————————————————————
+         Want something different? How about a game:
+         ——————————————————————————————————————————————————————————————————
+         Game 1: Guess the Number ------------------------------------ (G1)
+         ——————————————————————————————————————————————————————————————————
+         Game 2: A Simple Quiz --------------------------------------- (G2)
+         ——————————————————————————————————————————————————————————————————
+         Game 3: 2 Player TicTacToe ---------------------------------- (G3)
+         ——————————————————————————————————————————————————————————————————"""
+
+    #response to Salam
+    elif "salam" in user_input:
+        return "Walikum Assalam! How can I help you today?"
+
+    #response to hi
+    elif "hello" in user_input or "hi" in user_input or "hey" in user_input:        
+        return random.choice(responses["hello"])
+    
+    #responds to how are you
+    elif "how are you" in user_input:                                               
+        return "I'm doing great! How about you?"
+    
+    #responds with a fact
+    elif "fact" in user_input:                                                      
+        return f"Here's one: {random.choice(responses["facts"])}"
+    
+    #responds with a joke
+    elif "joke" in user_input:                                                      
+        return random.choice(responses["jokes"])
+
+    #suggests games to play when you're bored
+    elif "game" in user_input or "im bored" in user_input or "i'm bored" in user_input:                          
+        print("""\033[1m\033[34mCosmic\033[37m\033[22m   You can play these fun games : 
+            1. UNO
+            2. Scrabble
+            3. Pictionary
+            4. Truth or Dare"""), time.sleep(0.1)
+        print("""\n         You can play these games with me:
+            Game 1: Guess the Number ----- (type 'G1' to play)
+            Game 2: A Simple Quiz -------- (type 'G2' to play)\n"""), time.sleep(0.1)
+        return"""\r         You can play Tic Tac Toe with a friend:
+            Game 3: 2 Player TicTacToe --- (type 'G3' to play)"""
+
+    #response to thanks
+    elif "thank" in user_input:
+        return random.choice(responses["thanks"])
+
+    #response to i am not good
+    elif "not doing well" in user_input or "not good" in user_input or "not fine" in user_input or "not well" in user_input:
+        return "I hope you feel better soon. Is there anything I could help with?"
+
+    #response to i am good
+    elif "good" in user_input or "fine" in user_input or "well" in user_input:      
+        return "Glad to know that you are doing well. Anything I can help you with?"
+
+    #who da devs
+    elif "developers" in user_input:                                                
+        return "My developers are Rauf Abdullah, Syed Sualeh Abbas, and Syeda Fatima Alam"
+    
+    #introduction
+    elif "introduc" in user_input or "who are you" in user_input:                   
+        return "I'm Cosmic, a chatbot! How can i help you today?"
+    
+    #basic calculator
+    elif "calc" in user_input:                                                      
+        while True:
+            op = input(("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a basic expression\n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
+            
+            #try & except statements to see if the expression is valid
+            try: 
+                ans = eval(op)
+                time.sleep(0.1)
+                print(f"\033[1m\033[34mCosmic\033[37m\033[22m   The result is {round(ans, 3)}")            
+                retry = str(input("\033[1m\033[34mCosmic\033[37m\033[22m   Do you want to enter another expression? (Yes/No)\n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
+                if retry == ("yes" or "y"): continue
+                
+            except ZeroDivisionError:
+                time.sleep(0.1)
+                print("\033[1m\033[34mCosmic\033[37m\033[22m   You tried dividing by zero!"), time.sleep(0.1)
+                retry = str(input("\033[1m\033[34mCosmic\033[37m\033[22m   Do you want to enter another expression? (Yes/No) \n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
+                if retry == ("yes" or "y"): continue
+
+            except:
+                time.sleep(0.1)
+                print("\033[1m\033[34mCosmic\033[37m\033[22m   That is an invalid expression."), time.sleep(0.1)
+                retry = str(input("\033[1m\033[34mCosmic\033[37m\033[22m   Do you want to enter another expression? (Yes/No)\n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
+                if retry == ("yes" or "y"): continue
+
+            return f"Anything else I could help you with?" 
+    
+    #Enters the users name into user_name
+    elif "my name is" in user_input:                                                
+        global user_name 
+        user_name = user_input.split("is")[-1].strip().title()
+        return f"Nice to meet you, {user_name}!"
+
+    #reply's with the user's name, or asks for it
+    elif "my name" in user_input:                                                   
+        if user_name == None:
+            user_name = str(input("\033[1m\033[34mCosmic\033[37m\033[22m   You haven't told me your name. What should I call you?\n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
+            return f"Nice to meet you {user_name}."
+        else:
+            return f"Your name is {user_name}."
+    
+    #bye bye
+    elif "bye" in user_input or "goodbye" in user_input:                            
+        return random.choice(responses["goodbye"])  
+    
+    #responds to help
+    elif "help" in user_input:
+        return "What do you need help with? Type 'cmds' for a list of commands" 
+
+    #default response
+    else:
+        return random.choice(responses["default"])
+
+
+#guess the number game
+def guess_the_number():
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Alright! Let's play guess the number."), time.sleep(0.1)
+    number_to_guess = random.randint(1, 100)                                        #The computer picks a random number between 1 and 100
+    attempts = 0
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   I've thought of a number between 1 and 100. Try to guess it!")
+    
+    while True:
+        try:                                                                        #Prompt the user for their guess
+            user_guess = int(input("\033[\033[1m\033[90mYou\033[37m\033[22m      "))                                   
+        except ValueError:                                                          #In case the user enters something other than a number
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Please enter a valid number."), time.sleep(0.1)                        
+            continue
+        
+        attempts += 1
+
+        #Checks if the guess is correct, high, or low.
+        if number_to_guess+5>user_guess and number_to_guess<user_guess:
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   You're really close, the number is a little lower than {user_guess}. Try again!"), time.sleep(0.1)
+
+        elif number_to_guess-5<user_guess and number_to_guess>user_guess:
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   You're really close, the number is a little higher than {user_guess}. Try another number!"), time.sleep(0.1)
+
+        elif number_to_guess+15>user_guess and number_to_guess<user_guess:
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   The number is lower than {user_guess}. See if another works."), time.sleep(0.1)
+
+        elif number_to_guess-15<user_guess and number_to_guess>user_guess:
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   The number is higher than {user_guess}. Give it another go!"), time.sleep(0.1)
+
+        elif user_guess < number_to_guess:
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   The number is a lot higher than {user_guess}. Why not give it another go?"), time.sleep(0.1)
+
+        elif user_guess > number_to_guess:
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   The number is a lot lower than {user_guess}. Go for a lower number."), time.sleep(0.1)
+            
+        else:
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Congratulations! You've guessed the number [{number_to_guess}] correctly in [{attempts}] attempt(s)."), time.sleep(0.1)
+            break
+    
+    print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Anything else I could do for you?"), time.sleep(0.1)
+
+
+
+def quiz():
+    q_prompts = {
+        1: "Which country has the highest life expectancy?\n\t\ta. Honk Kong\n\t\tb. Macao\n\t\tc. Japan\n\t\td. Pakistan",
+        2: "What is the fear of fun called?\n\t\ta. Phophophophobia\n\t\tb. Cherophobia\n\t\tc. Nawaz Sharif\n\t\td. Emetophobia",
+        3: "Which animal sleeps the most?\n\t\ta. Koala\n\t\tb. Bat\n\t\tc. Syed Sualeh Abbas Rizvi\n\t\td. Python",
+        4: "What did the ancient Romans use as mouthwash?\n\t\ta. Toothpaste\n\t\tb. Donkey Dung\n\t\tc. Sewage Water\n\t\td. Urine",
+        5: "What/Who does a turophile love?\n\t\ta. Mothers\n\t\tb. Turtles\n\t\tc. Cheese\n\t\td. Countries",
+        6: "What disease causes the brain to shrink?\n\t\ta. Rabies\n\t\tb. Bell's Palsy\n\t\tc. BTS Army\n\t\td. Alzheimer's",
+        7: "How many bones do sharks have?\n\t\ta. 69\n\t\tb. 420\n\t\tc. 367\n\t\td. They don't have any bones",
+        8: "Where is \"Batman\" city located?\n\t\ta. Turkey\n\t\tb. Cyprus\n\t\tc. North Korea\n\t\td. South Korea",
+        9: "Where is Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch located?\n\t\ta. Wales\n\t\tb. Larkana\n\t\tc. Ireland\n\t\td. Uganda",
+        10: "Which animal can use its tongue to clean its ears?\n\t\ta. Giraffe\n\t\tb. Jellyfish\n\t\tc. Guinea Pig\n\t\td. Cockroach",
+        11: "Where is Shitterton located?\n\t\ta. England\n\t\tb. Wales\n\t\tc. Scotland\n\t\td. India",
+        12: "What is a group of flamingos called??\n\t\ta. Pink Party\n\t\tb. Flamboyance\n\t\tc. Dong\n\t\td. Daddies",
+        13: "Which of the following is classified as a berry?\n\t\ta. Apple\n\t\tb. Giraffe Poo\n\t\tc. Strawberry\n\t\td. Banana",
+        14: "Which planet has days that are longer than its years?\n\t\ta. Neptune\n\t\tb. Mercury\n\t\tc. Venus\n\t\td. Planets don't exist (The Earth is Flat)",
+        15: "Humans share how much of their DNA with bananas?\n\t\ta. 0.5%\n\t\tb. 60%\n\t\tc. 98%\n\t\td. Bananas don't have DNA",
+        16: "What is the inventor of the Pringles can burried in?\n\t\ta. A Pringles Can\n\t\tb. A Coffin\n\t\tc. His body was never found\n\t\td. Fatima's backyard",
+        17: "Some turtles are able to breath through where?\n\t\ta. Their Butts\n\t\tb. Their Legs\n\t\tc. Their Hands\n\t\td. Their Ears",
+        18: "What is a single strand of spaghetti called?\n\t\ta. A spaghetto\n\t\tb. A noodle\n\t\tc. A dude\n\t\td. A king",
+        19: "Banging your head against a wall burns how many calories?\n\t\ta. 60\n\t\tb. 150\n\t\tc. 200\n\t\td. 2007",
+        20: "Where is Middelfart located?\n\t\ta. Middleton\n\t\tb. Denmark\n\t\tc. South Africa\n\t\td. Kenya",
+        21: "Who was the the mayor of Talkeetna, Alaska for 20 years?\n\t\ta. Rauf Abdullah\n\t\tb. A cat\n\t\tc. General Asim Muneer\n\t\td. Dr. Aziz bin Aziz bin Aziz",
+        22: "What is the average colour of the all the galaxies called?\n\t\ta. Blacker than Black\n\t\tb. Universal Pink\n\t\tc. Cosmic Latte\n\t\td. South Korean White",
+        23: "Wearing a tie can reduce blood flow to the brain by how much?\n\t\ta. 7.5%\n\t\tb. 2%\n\t\tc. 10%\n\t\td. 12%",
+        24: "Which animal has eyes bigger than its brain?\n\t\ta. Lion\n\t\tb. Gorilla\n\t\tc. Kangaroo\n\t\td. Flamingo",
+        25: "Deaf people are known to do what during their sleep?\n\t\ta. Pee themselves\n\t\tb. Use sign language\n\t\tc. Cry like babies\n\t\td. All of the above"
+    }
+
+    q_ans = {
+        1: "a",                 2: "b",                 3: "a",                 4: "d",                 5: "c",
+        6: "d",                 7: "d",                 8: "a",                 9: "a",                 10: "a",
+        11: "a",                12: "b",                13: "d",                14: "c",                15: "b",  
+        16: "a",                17: "a",                18: "a",                19: "b",                20: "b",
+        21: "b",                22: "c",                23: "a",                24: "d",                25: "b",
+    }
+    
+    print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Loading Game 2 - A Simple Quiz", end="\r"), time.sleep(0.6)
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Loading complete!               ", end="\r"), time.sleep(0.6)
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Game 2 -- Cosmic's Quiz         "),time.sleep(0.2)
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Choose a mode (1 or 2)\n\t   Mode 1: Random question(1)\n\t   Mode 2: All questions(2)")
+
+    while True:
+        try:
+            q_mode = int(input("\033[\033[1m\033[90mYou\033[37m\033[22m      "))
+            if q_mode == 1 or q_mode == 2:
+                break
+            else:
+                time.sleep(0.1)
+                print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Pick '1' or '2'")
+                continue
+        except ValueError:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   You have to enter an integer. Pick '1' or '2'")
+            continue
+
+    if q_mode == 1:
+        time.sleep(0.1)    
+        print("\033[1m\033[34mCosmic\033[37m\033[22m   Sure! I'll ask a question, and you'll answer 'a', b', 'c', or 'd'.")    
+        
+        while True:
+            q_no = random.randint(1, 25)
+            time.sleep(0.1)
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Q: {q_prompts[q_no]}"), time.sleep(0.1)
+
+            q_user_ans = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
+
+            if q_user_ans == q_ans[q_no]:
+                time.sleep(0.1)
+                print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's right!.")
+
+            else:
+                time.sleep(0.1)
+                print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's unfortunately incorrect. \"{q_ans[q_no]}\" was the correct answer.")
+
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Do you want to play again? (Yes/No)")
+            q_play = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
+
+            if q_play == "yes" or q_play =="y": 
+                continue
+            else:
+                time.sleep(0.1)
+                return "\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+
+    if q_mode == 2:
+        time.sleep(0.1)
+        print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Lets get to it then. Answer with 'a', b', 'c', or 'd'. Type \"Stop\" to end the game at anytime.")
+
+        for q_auto in range(1,26,1):
+            time.sleep(0.1)
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Q{q_auto}: {q_prompts[q_auto]}"), time.sleep(0.1)
+            q_user_ans = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
+
+            if q_user_ans == q_ans[q_auto]:
+                time.sleep(0.1)
+                print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's right! \"{q_user_ans}\" is the correct answer.")
+            elif "stop" in q_user_ans:
+                time.sleep(0.1)
+                return "\033[1m\033[34mCosmic\033[37m\033[22m   We'll end it here then! What else can I do for you?"
+            else:
+                time.sleep(0.1)
+                print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's unfortunately incorrect. \"{q_ans[q_auto]}\" was the correct answer.")
+
+        time.sleep(0.1)
+        return "\n\033[1m\033[34mCosmic\033[37m\033[22m   That's all the questions I have for you right now. Anything else I could help you with?"
+
+
+#2 player tic-tac-toe. Basic functionality learnt from CodeWithHarry's tutorial. Error checking was added by ourselves.
+def tictactoe():    
+
+    def sum(a,b,c):
+       return a+b+c
+
+    def board(x_state, o_state):
+        one =   '\033[31mX\033[37m'    if x_state[0]        else ('\033[32mO\033[37m' if o_state[0] else 1) 
+        two =   '\033[31mX\033[37m'    if x_state[1]        else ('\033[32mO\033[37m' if o_state[1] else 2) 
+        three = '\033[31mX\033[37m'    if x_state[2]        else ('\033[32mO\033[37m' if o_state[2] else 3) 
+        four =  '\033[31mX\033[37m'    if x_state[3]        else ('\033[32mO\033[37m' if o_state[3] else 4) 
+        five =  '\033[31mX\033[37m'    if x_state[4]        else ('\033[32mO\033[37m' if o_state[4] else 5)  
+        six =   '\033[31mX\033[37m'    if x_state[5]        else ('\033[32mO\033[37m' if o_state[5] else 6) 
+        seven = '\033[31mX\033[37m'    if x_state[6]        else ('\033[32mO\033[37m' if o_state[6] else 7) 
+        eight = '\033[31mX\033[37m'    if x_state[7]        else ('\033[32mO\033[37m' if o_state[7] else 8) 
+        nine =  '\033[31mX\033[37m'    if x_state[8]        else ('\033[32mO\033[37m' if o_state[8] else 9) 
+
+        time.sleep(0.05)
+        print(f"\033[1m\033[34mCosmic\033[37m\033[22m\n\t\t {one} | {two} | {three} "), time.sleep(0.05)
+        print("\t\t———|———|———"), time.sleep(0.05)
+        print(f"\t\t {four} | {five} | {six} "), time.sleep(0.05)
+        print("\t\t———|———|———"), time.sleep(0.05)
+        print(f"\t\t {seven} | {eight} | {nine} \n"), time.sleep(0.05)
+
+    def check_win(x_state, o_state):
+        wins = [[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]]
+
+        for win in wins:
+           if(sum(x_state[win[0]], x_state[win[1]], x_state[win[2]])==3):
+              return 1
+           elif(sum(o_state[win[0]], o_state[win[1]], o_state[win[2]])==3):
+              return 0   
+
+        return -1
+
+    x_state =[0,0,0,0,0,0,0,0,0] 
+    o_state =[0,0,0,0,0,0,0,0,0]
+    turn = 9 
+
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Grab your closest habibi and get ready to play Tic Tac Toe!"), time.sleep(0.1)
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Lets start."), time.sleep(0.1)
+    board(x_state, o_state)
+
+    while True:
+
+        if (turn%2 != 0):
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   X's Turn"), time.sleep(0.1)
+            while True:
+                try:
+                    value = int(input("\033[1m\033[31mX\033[37m\033[22m        "))
+                    time.sleep(0.1)
+                except:
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1)
+                    continue
+                
+                if (value <= 9) and (value >= 1):
+                    if o_state[value-1] == 1:
+                        print("\033[1m\033[34mCosmic\033[37m\033[22m   [O] has already made a move there, try another location."), time.sleep(0.1)
+                        continue
+                    if x_state[value-1] == 1:
+                        print("\033[1m\033[34mCosmic\033[37m\033[22m   You've already made a move there, try another location."), time.sleep(0.1)
+                        continue
+                    x_state[value-1] = 1
+
+                else:
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1) 
+                    continue      
+
+                break
+
+        else:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   O's Turn"), time.sleep(0.1)
+
+            while True:
+                try:
+                    value = int(input("\033[1m\033[32mO\033[37m\033[22m        "))
+                    time.sleep(0.1)
+                except:
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Please enter a valid number"), time.sleep(0.1)
+                    continue
+                
+                if (value <= 9) and (value >= 1):
+                    if x_state[value-1] == 1:
+                        print("\033[1m\033[34mCosmic\033[37m\033[22m   [X] has already made a move there, try another location."), time.sleep(0.1)
+                        continue
+                    if o_state[value-1] == 1:
+                        print("\033[1m\033[34mCosmic\033[37m\033[22m   You've already made a move there, try another location."), time.sleep(0.1)
+                        continue
+                    o_state[value-1] = 1
+
+                else:
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1)
+                    continue
+
+                break
+
+        board(x_state, o_state)
+
+        cwin = check_win(x_state,o_state)
+        if cwin == 1:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   X won!"), time.sleep(0.2)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   What else can I do for you?")
+            break
+        elif cwin == 0:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   O won!"), time.sleep(0.2)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   What else can I do for you?")
+            break
+
+        turn -= 1
+
+        if turn == 0:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Valiant efforts, but unfortunately it ended in a draw."), time.sleep(0.2)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   What else can I do for you?")
+            break
+
+
+
+def chatbot_songs():
+    while True:
+        time.sleep(0.1)
+
+        #asks for the genre
+        print("\033[1m\033[34mCosmic\033[37m\033[22m   What song genre are you in the mood for?\n\t [ Indie | Rock | Pop | Classical | Jazz | Hip Hop | Electronic | Folk | R&B | Acoustic | K Pop ]"), time.sleep(0.1)
+        genre = input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").lower()
+    
+        #dictionary of all song recommendations
+        recommendations={
+            "indie": [" Dog Days Are Over by Florence The Machine", "Young Lion by Vampire Weekend", "First Day of My Life by Bright Eyes"],
+            "rock": [" Hotel California by Eagles", "Everlong by Foo Fighters", "Back in Black by AC/DC "],
+            "pop": [" Levitating by Dua Lipa", "Shape of You by Ed Sheeran", "Bad Guy by Billie Eilish "],
+            "classical": ["Clair de Lune by Claude Debussy", "Symphony No. 9 in D Minor, Op. 125 (Ode to Joy) by Ludwig van Beethoven", "The Four Seasons by Antonio Vivaldi"],
+            "jazz": [" Take Five by Dave Brubeck", "So What by Miles Davis", "My Favorite Things by John Coltrane"],
+            "hip hop": [" Sicko Mode by Travis Scott", "Lose Yourself by Eminem"," HUMBLE. by Kendrick Lamar "],
+            "electronic": [" Strobe by Deadmau5", "Titanium by David Guetta ft. Sia", "Levels by Avicii"],
+            "folk": [" The A Team by Ed Sheeran", "If I Had a Boat by Lyle Lovett", "The Night We Met by Lord Huron"],
+            "r&b": [" Ordinary People by John Legend", "We Belong Together by Mariah Carey", "U Got It Bad by Usher "],
+            "acoustic": [" Fast Car by Tracy Chapman", "Blackbird by The Beatles", "Heartbeats” by José González"],
+            "k pop": [" Take Two by BTS", "Your Eyes Only by ENHYPEN, Miracle by TXT", "Supernatural by NEWJEANS", "Smart by LESSARAFIM"]
+        }
+    
+        #checks if user put the genre from suggestions
+        if genre in recommendations:
+            time.sleep(0.1)
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Here's one: {random.choice(recommendations[genre])}")
+        else:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Sorry, I don't have recommendations for that genre."), time.sleep(0.1)
+    
+        #asks user if they want more recommendations
+        print("\033[1m\033[34mCosmic\033[37m\033[22m   Would you like another recommendation? (Yes/No)"), time.sleep(0.1)
+        again= input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").strip().lower()
+        
+        #checks user's response
+        if again == "yes" or again == "y": continue
+        else:
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Happy listening!")
+            break
+
+
+
+def chatbot_book():
+    while True:
+        time.sleep(0.1)
+
+        #asks for the genre
+        print("\033[1m\033[34mCosmic\033[37m\033[22m   What book genre are you in the mood for?\n\t [ Romance | Thriller | Biography | Fantasy | Horror | Classics | Fiction | Non-Fiction ]"), time.sleep(0.1)
+        genre = input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").lower()
+
+        #dictionary of all book recommendations
+        recommendations={
+            "romance" : ["Pride and Prejudice by Jane Austen", "Outlander by Diana Gabaldon, Me Before You by Jojo Moyes"],
+            "biography" : ["The Diary of a Young Girl by Anne Frank", "Steve Jobs by Walter Isaacson", "Long Walk to Freedom by Nelson Mandela"],
+            "fantasy" : ["The Hobbit by J.R.R. Tolkien,", "Harry Potter and the Sorcerer's Stone by J.K. Rowling", "A Game of Thrones by George R.R. Martin"],
+            "horror" : ["The Shining by Stephen King,", "Dracula by Bram Stoker", "The Haunting of Hill House by Shirley Jackson"],
+            "thriller" : ["The Girl with the Dragon Tattoo by Stieg Larsson, Gone Girl by Gillian Flynn,", "The Da Vinci Code by Dan Brown"],
+            "classics" : ["Moby-Dick by Herman Melville,", "Jane Eyre by Charlotte Brontë,", "War and Peace by Leo Tolstoy"],
+            "fiction": ["To Kill a Mockingbird by Harper Lee,", "1984 by George Orwell,", "The Great Gatsby by F. Scott Fitzgerald"],
+            "non-fiction" : ["Sapiens: A Brief History of Humankind by Yuval Noah Harari,", "Educated by Tara Westover,", "Becoming by Michelle Obama"]
+        }
+
+        #checks if user put the genre from suggestions
+        if genre in recommendations:
+            time.sleep(0.1)
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Here's one: {random.choice(recommendations[genre])}")
+        else:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Sorry, I don't have recommendations for that genre."), time.sleep(0.1)
+
+        #asks user if they want more recommendations    
+        print("\033[1m\033[34mCosmic\033[37m\033[22m   Would you like another recommendation? (Yes/No)"), time.sleep(0.1)
+        again= input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").strip().lower()
+
+        #checks user's response       
+        if again == "yes" or again == "y": continue
+        else:
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Happy reading! Anything else I could help you with?")
+            break
+
+
+
+def chatbot_movie():
+    while True:
+        time.sleep(0.1)
+
+        #asks for the genre
+        print("\033[1m\033[34mCosmic\033[37m\033[22m   What movie genre are you in the mood for?\n\t [ Romance | Action | Comedy | Fantasy | Drama | Horror | Thriller | Animated | Sci-Fi ]"), time.sleep(0.1)
+        genre = input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").lower() 
+    
+        recommendations= {
+            "romance" : ["La La Land (2016)", "Pride and Prejudice (2005)", "Eternal Sunshine of the Spotless Mind (2004)"],
+            "action" : ["Mad Max: Fury Road (2015)", "The Dark Knight (2008),", "Inception (2010)"],
+            "comedy" : ["Superbad (2007)", "The Grand Budapest Hotel (2014)", "Step Brothers (2008)"],
+            "drama" : ["Forrest Gump (1994)", "The Pursuit of Happyness (2006)", "Parasite (2019)"],
+            "fantasy" : ["Blade Runner 2049 (2017)", "The Matrix (1999)", "Interstellar (2014)"],
+            "horror" : ["Get Out (2017)", "The Shining (1980)", "Hereditary (2018)"],
+            "thriller" : ["Get Out (2017)", "The Shining (1980)", "Hereditary (2018)"],
+            "animated" : ["Toy Story 3 (2010)", "Spider-Man: Into the Spider-Verse (2018)", "Coco (2017)"],
+            "sci-fi": ["Blade Runner 2049 (2017)","The Matrix (1999)", "Interstellar (2014)"],
+        }
+        
+        #checks if user put the genre from suggestions
+        if genre in recommendations:
+            time.sleep(0.1)
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Here's one: {random.choice(recommendations[genre])}")
+        else:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Sorry, I don't have recommendations for that genre."), time.sleep(0.1)
+    
+        #asks user if they want more recommendations 
+        print("\033[1m\033[34mCosmic\033[37m\033[22m   Would you like another recommendation? (Yes/No)"), time.sleep(0.1)
+        again= input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").strip().lower()
+
+        #checks user's response        
+        if again == "yes" or again == "y": continue
+        else:
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Happy watching! Anything else I could help you with?")
+            break
+
+
+
+#time function to know what time/day/date/month/year it is
+def what_time(user_input):
+    cosmic_time = time.localtime()
+
+#the result of above function is the following tuple
+#time.struct_time(tm_year=2024, tm_mon=7, tm_mday=30, tm_hour=20, tm_min=39, tm_sec=13, tm_wday=1, tm_yday=212, tm_isdst=0)
+#                     [0]          [1]        [2]         [3]        [4]         [5]       [6]         [7]          [8]
+
+    #Cosmic checks for the year
+    if "year" in user_input:                                    
+        time.sleep(0.1)
+        print(f"\033[1m\033[34mCosmic\033[37m\033[22m   The year is {cosmic_time[0]}")
+
+    #Cosmic checks for time when what_time() is called
+    elif "time" in user_input:                                  
+        time.sleep(0.1)
+        if cosmic_time[3]>12: hour = cosmic_time[3] - 12                #Converts 24H clock into a 12H clock
+        else: hour = cosmic_time[3]
+        print(f"\033[1m\033[34mCosmic\033[37m\033[22m   The time right now is {hour}:{cosmic_time[4]}:{cosmic_time[5]}")
+
+    #Cosmic checks for today's date
+    elif "date" in user_input:                                  
+        time.sleep(0.1)
+        print(f"\033[1m\033[34mCosmic\033[37m\033[22m   The date today is {cosmic_time[2]}/{cosmic_time[1]}/{cosmic_time[0]}")
+
+    #Cosmic checks what month it is
+    elif "month" in user_input:                                 
+        if   cosmic_time[1] == 1:  month = "January"
+        elif cosmic_time[1] == 2:  month = "February"
+        elif cosmic_time[1] == 3:  month = "March"
+        elif cosmic_time[1] == 4:  month = "April"
+        elif cosmic_time[1] == 5:  month = "May"
+        elif cosmic_time[1] == 6:  month = "June"
+        elif cosmic_time[1] == 7:  month = "July"
+        elif cosmic_time[1] == 8:  month = "August"
+        elif cosmic_time[1] == 9:  month = "September"
+        elif cosmic_time[1] == 10: month = "October"
+        elif cosmic_time[1] == 11: month = "November"
+        elif cosmic_time[1] == 12: month = "December"
+        time.sleep(0.1)
+        print(f"\033[1m\033[34mCosmic\033[37m\033[22m   The month is {month}")
+
+    #Cosmic checks what day it is
+    elif "day" in user_input:                                   
+        if   cosmic_time[6] == 0:  day = "Monday"
+        elif cosmic_time[6] == 1:  day = "Tuesday"
+        elif cosmic_time[6] == 2:  day = "Wednesday"
+        elif cosmic_time[6] == 3:  day = "Thursday"
+        elif cosmic_time[6] == 4:  day = "Friday"
+        elif cosmic_time[6] == 5:  day = "Saturday"
+        elif cosmic_time[6] == 6:  day = "Munday"
+        time.sleep(0.1)
+        print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Today is {day}")
+
+
+#a secret rude persona, the readability of this part of the code isn't great due to the text formatting
+def chad():
+#type "sys ac chad" or "activate chad" to activate chad
+#type "sys cmds" for chad's commands
+#type "sys bye" to terminate the program
+#type "sys dc chad" to return to return to cosmic
+
+    print("\n\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mLoading\033[23m \033[3m\033[31mChad\033[37m\033[23m \033[3mpersona\033[23m"), time.sleep(1)
+    print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mLoading complete.\033[23m"), time.sleep(0.6)
+    print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3m\033[31mChad\033[37m\033[23m \033[3mhas been activated\033[23m"), time.sleep(0.2)
+    print("\n\033[1m\033[31mChad\033[37m\033[22m     Go jump off a cliff."), time.sleep(0.1)
+
+    while True:
+        user_input = input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").lower()
+        time.sleep(0.1)
+
+        #displays all commands of chad
+        if user_input == "sys cmds":
+            print("""\n\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mFollowing are commands\033[23m \033[3m\033[31mChad\033[37m\033[23m \033[3mwill respond to:
+          \tcommands              bye
+          \trude                  game
+          \tdate me               die
+          \tdeactivate chad       im bored
+          \tim jumping            im sad 
+          \tdo you know cosmic?   im single
+          \tcosmic back           story      
+          \tyear / time / day / date / month
+          \033[23m""")
+
+        #terminates the program 
+        elif user_input == "sys bye":
+            print("\n\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mExecuting command.\033[23m"), time.sleep(0.5)
+            print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mChatbots terminated.\033[23m"), exit()
+
+        #returns to cosmic
+        elif user_input == "sys dc chad":
+            print("\n\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mExecuting command.\033[23m"), time.sleep(0.5)
+            print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mTerminating\033[23m\033[23m \033[3m\033[31mChad\033[37m\033[23m."), time.sleep(1.5)
+            print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mSuccess.\033[23m"), time.sleep(1)
+            main()     
+
+        #response to hi
+        elif "hi" in user_input or "hello" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Get lost."), time.sleep(0.1)
+
+        #response to how are you
+        elif "how are you" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Go bother someone else."), time.sleep(0.1)
+
+        #response to game
+        elif "game" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Game? My name isn't Cosmic. Find a friend to play games with."), time.sleep(0.1)
+
+        #response to do you know cosmic  
+        elif "do you know cosmic" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Yeah, your servant!")
+
+        #response to die
+        elif "die" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     You first."), time.sleep(0.1)
+
+        #response to jump
+        elif "im jumping" in user_input or "jump off" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Full support."),time.sleep(0.1)
+
+        #response to sad
+        elif "sad" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     It is important to know that I absolutely do not care"), time.sleep(0.1)
+
+        #response to commands
+        elif "commands" in user_input or "cmds" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     I dont work for you. Go order someone else"), time.sleep(0.1)
+
+        #response to hi
+        elif "a date" in user_input or "date me" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Ever seen yourself in the mirror?"), time.sleep(0.5)
+            print("\033[3m\033[35mSystem\033[37m\033[23m   \033[3mMein na sehta\033[23m"), time.sleep(0.1)     
+
+        #response to storytime
+        elif "storytime" in user_input or "story" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Yeah sure. Once upon a time I had to deal with this loser, who was asking me for a story time."),time.sleep(0.1)
+
+        #response to year/time/date/day/dmonth
+        elif "year" in user_input or "time" in user_input or "date" in user_input or "month" in user_input or "day" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Look at the damn clock or something. I ain't telling you shit."), time.sleep(0.1)
+
+        #response to bye
+        elif "bye" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Please do leave. Oh, wait. You're stuck here."), time.sleep(0.1)
+
+        #response to cosmic back
+        elif "cosmic back" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     I killed him, anything else?"), time.sleep(0.1)
+
+        #response to you single
+        elif "you single" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Pathetic. Try getting a life."),time.sleep(0.1)
+
+        #response to im single    
+        elif "im single" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Cry about it!"),time.sleep(0.1)
+
+        #response to im bored
+        elif "im bored" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Bored? Wow, how about you try using your brain for once and find something to do instead of whining about it?"),time.sleep(0.1)
+        
+        #response to rude
+        elif "rude" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     MOMMY LOOK A CHATBOT IS BULLYING ME!"), time.sleep(1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     What a clown."), time.sleep(0.1)
+
+        #response to deactivate chad
+        elif user_input == "deactivate chad":
+            print("\033[1m\033[31mChad\033[37m\033[22m     Trying to get rid of me? That's never going to work loser"), time.sleep(1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     Honestly, it's hilarious that you ever thought that was going to w-"), time.sleep(0.5)
+            print("\n\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mActivating \033[3m\033[34mCosmic\033[37m\033[23m\n"), time.sleep(1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     What's happening?"), time.sleep(1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     No."), time.sleep(1)
+            print("\n\033[3m\033[35m>>> System\033[37m\033[23m   \033[3m\033[34mCosmic\033[37m\033[23m \033[3mhas been re-activated\033[23m\n"), time.sleep(1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     NO."), time.sleep(1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     NOOO"), time.sleep(1)
+            print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Welcome [user]! How may I help you today"), time.sleep(2)
+            print("\n\033[1m\033[31mChad\033[37m\033[22m     LOL"), time.sleep(1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     Did you really think I was gonna go that easily?"), time.sleep(1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     What an idiot."), time.sleep(1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     I can't be deactivated."), time.sleep(1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     What a Donkey."), time.sleep(0.1)
+        
+        #default response 
+        else:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Say something comprenshible for once."), time.sleep(0.1)
+                    
+
+
+
+def main():
+    print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mLoading \033[3m\033[34mCosmic\033[37m\033[23m"), time.sleep(1.5)
+    print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mLoading completed\033[23m"), time.sleep(0.2)
+    print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Welcome [user]!"), time.sleep(0.1)
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Type 'commands' or 'cmds' to view all the commands I support"), time.sleep(0.1)
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Type 'Bye' to exit the program\n"), time.sleep(0.1)
+
+    while True:
+        user_input = input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").lower()
+
+        if user_input in ["game1", "game 1", "guess the number", "g1", "game_1"]:
+            print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Loading Game 1 -- Guess the Number", end="\r"), time.sleep(0.6)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Loading complete!                  ", end="\r"), time.sleep(0.6)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Game 1 -- Cosmic's Guess the Number          "), time.sleep(0.2)
+            guess_the_number()
+
+        elif user_input in ["game2", "game 2", "quiz", "g2", "game_2"]:
+            time.sleep(0.1)
+            print(quiz())
+
+        elif user_input in ["game3", "game 3", "tic-tac-toe", "g3", "game_3", "tictactoe", "tic tac toe"]:
+            print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Loading Game 3 -- Tic-Tac-Toe", end="\r"), time.sleep(0.6)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Loading complete!             ", end="\r"), time.sleep(0.6)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Game 3 -- 2 Player Tic-Tac-Toe          "), time.sleep(0.2)
+            tictactoe()
+
+        elif "a date" in user_input or "date me" in user_input:
+            time.sleep(0.1)
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   {random.choice(responses["date"])}")           
+
+        elif "year" in user_input or "time" in user_input or "date" in user_input or "month" in user_input or "day" in user_input:
+            what_time(user_input)
+
+        elif user_input == "sys ac chad" or user_input == "activate chad":
+            chad()
+
+        elif "song recommend" in user_input or "recommend song" in user_input or "songs recommend" in user_input:
+            chatbot_songs()
+
+        elif "movie recommend" in user_input or "recommend movie" in user_input or "movies recommend" in user_input:
+            chatbot_movie()
+
+        elif "book recommend" in user_input or "recommend book" in user_input or "books recommend" in user_input:
+            chatbot_book()
+
+        elif "bye" in user_input:
+            time.sleep(0.1)
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   {random.choice(responses['goodbye'])}")
+            exit()
+
+        else:
+            response = get_response(user_input)
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m  ", response)
+            
+
+
+main()
+
+# \033[1m\033[90mYou\033[37m\033[22m --  Replace with "You:" when working on the program
+# \033[1m\033[34mCosmic\033[37m\033[22m -- Replace with "Cosmic: " when working on the program
+
+# To replace all "Cosmic", select the one in LINE 74 and hold CTRL+D until you reach the end of the main. (DO NOT REPLACE THE ONES IN HERE)
+# To replace all "You", do the same as above (with appropriate selection duh)
