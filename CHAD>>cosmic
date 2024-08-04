@@ -133,10 +133,6 @@ def get_response(user_input):
     elif "thank" in user_input:
         return random.choice(responses["thanks"])
 
-    #response to whatever this is
-    elif "happy birthday" in user_input:
-        return "Happy Birthday! Wishing you a day filled with laughter, joy, and all your favorite things. Enjoy your special day to the fullest!"
-
     #response to i am not good
     elif "not doing well" in user_input or "not good" in user_input or "not fine" in user_input or "not well" in user_input or "not great" in user_input:
         return "I hope you feel better soon. Is there anything I could help with?"
