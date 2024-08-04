@@ -1,7 +1,6 @@
 import random  #this will allow us to work with anything that's required to be random
 import time    #this will allow us to add artificial pauses & delays in Cosmic's responses, along with info about the time
-
-#these are the color codes (escape keys) we have used
+#these are the color codes (escape keys) we have used for cosmic
 """ 
 --------------------------------------------------
 -------------------------->>>>>> text color <<<<<<           
@@ -321,15 +320,22 @@ def quiz():
             else:
                 time.sleep(0.1)
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's unfortunately incorrect. \"{q_ans[q_no]}\" was the correct answer.")
-
+            
+            #asks if the user wants to play again
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Do you want to play again? (Yes/No)")
-            q_play = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
-
-            if q_play == "yes" or q_play =="y": continue              
-            else:
+            while True:
                 time.sleep(0.1)
-                return "\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+                q_play = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
+                if q_play == "yes" or q_play =="y":
+                     break                 
+                elif q_play == "no" or q_play =="n":
+                    time.sleep(0.1)
+                    return "\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+                else:
+                    time.sleep(0.1)
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Please type 'Yes' or 'No'")
+                
 
     if q_mode == 2:
         time.sleep(0.1)
@@ -351,7 +357,7 @@ def quiz():
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's unfortunately incorrect. \"{q_ans[q_auto]}\" was the correct answer.")
 
         time.sleep(0.1)
-        return "\n\033[1m\033[34mCosmic\033[37m\033[22m   That's all the questions I have for you right now. Anything else I could help you with?"
+        return "\033[1m\033[34mCosmic\033[37m\033[22m   That's all the questions I have for you right now. Anything else I could help you with?"
 
 
 #function for guess the song game
@@ -439,16 +445,23 @@ def guess_the_song():
                 time.sleep(0.1)
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's unfortunately incorrect. \"{(s_ans[s_no]).title()}\" was the correct answer, which is a song by {s_artist[s_no]}.")
 
+            #asks if the user wants to play again
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Do you want to play again? (Yes/No)")
-            q_play = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
-
-            if q_play == "yes" or q_play =="y": continue
-            else:
+            while True:
                 time.sleep(0.1)
-                print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"), time.sleep(0.1)
-                break
-        
+                s_play = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
+                if s_play == "yes" or s_play =="y":
+                    break        
+                elif s_play == "no" or s_play =="n":
+                    time.sleep(0.1)
+                    return "\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+                else:
+                    time.sleep(0.1)
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Please type 'Yes' or 'No'")
+
+            
+
     if s_mode == 2:
         time.sleep(0.1)
         print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Lets get to it then. I'll types some lyrics, and you'll answer with the name of the song."), time.sleep(0.1)
@@ -465,13 +478,13 @@ def guess_the_song():
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's correct!")
             elif s_user_ans == "stop":
                 time.sleep(0.1)
-                print("\033[1m\033[34mCosmic\033[37m\033[22m   We'll end it here then! What else can I do for you?")
+                return "\033[1m\033[34mCosmic\033[37m\033[22m   We'll end it here then! What else can I do for you?"
             else:
                 time.sleep(0.1)
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's unfortunately incorrect. \"{(s_ans[s_auto]).title()}\" was the correct answer, which is a song by {s_artist[s_auto]}.")
 
         time.sleep(0.1)
-        print("\n\033[1m\033[34mCosmic\033[37m\033[22m   That's all the songs I have for you right now. Anything else I could help you with?")
+        return "\n\033[1m\033[34mCosmic\033[37m\033[22m   That's all the songs I have for you right now. Anything else I could help you with?"
 
 
 #2 player tic-tac-toe. Basic functionality learnt from CodeWithHarry's tutorial. Upgraded by ourselves (error checking, better drawing system, etc.)
@@ -630,14 +643,17 @@ def chatbot_songs():
     
         #asks user if they want more recommendations
         print("\033[1m\033[34mCosmic\033[37m\033[22m   Would you like another recommendation? (Yes/No)"), time.sleep(0.1)
-        again= input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").strip().lower()
-        
-        #checks user's response
-        if again == "yes" or again == "y": continue
-        else:
+        while True:
             time.sleep(0.1)
-            print("\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?")
-            break
+            again = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
+            if again == "yes" or again =="y":
+                break        
+            elif again == "no" or again =="n":
+                time.sleep(0.1)
+                return "\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+            else:
+                time.sleep(0.1)
+                print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Please type 'Yes' or 'No'")
 
 
 #function to recommend books - DONE
@@ -669,16 +685,19 @@ def chatbot_book():
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Sorry, I don't have recommendations for that genre."), time.sleep(0.1)
 
-        #asks user if they want more recommendations    
+        #asks user if they want more recommendations
         print("\033[1m\033[34mCosmic\033[37m\033[22m   Would you like another recommendation? (Yes/No)"), time.sleep(0.1)
-        again= input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").strip().lower()
-
-        #checks user's response       
-        if again == "yes" or again == "y": continue
-        else:
+        while True:
             time.sleep(0.1)
-            print("\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?")
-            break
+            again = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
+            if again == "yes" or again =="y":
+                break        
+            elif again == "no" or again =="n":
+                time.sleep(0.1)
+                return "\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+            else:
+                time.sleep(0.1)
+                print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Please type 'Yes' or 'No'")
 
 
 #function to recommend movies - DONE
@@ -710,16 +729,19 @@ def chatbot_movie():
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Sorry, I don't have recommendations for that genre."), time.sleep(0.1)
     
-        #asks user if they want more recommendations 
+        #asks user if they want more recommendations
         print("\033[1m\033[34mCosmic\033[37m\033[22m   Would you like another recommendation? (Yes/No)"), time.sleep(0.1)
-        again= input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").strip().lower()
-
-        #checks user's response        
-        if again == "yes" or again == "y": continue
-        else:
+        while True:
             time.sleep(0.1)
-            print("\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?")
-            break
+            again = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
+            if again == "yes" or again =="y":
+                break        
+            elif again == "no" or again =="n":
+                time.sleep(0.1)
+                return "\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+            else:
+                time.sleep(0.1)
+                print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Please type 'Yes' or 'No'")
 
 
 #function to check bmi - DONE
@@ -762,7 +784,6 @@ def bmi_check():
     elif bmi>=25:
         print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Your BMI is {round(bmi, 2)} (Overweight)"), time.sleep(0.1)
         print("\033[1m\033[34mCosmic\033[37m\033[22m   Please take care of yourself. Try balancing your diet and exercise regularly. Seek support services if necessary."), time.sleep(0.1)
-
 
 #time function to know what time/day/date/month/year it is - DONE
 def what_time(user_input):
@@ -953,9 +974,7 @@ def chad():
         
         #default response 
         else:
-            print("\033[1m\033[31mChad\033[37m\033[22m     Say something comprenshible for once."), time.sleep(0.1)
-                    
-
+            print("\033[1m\033[31mChad\033[37m\033[22m     Say something comprenshible for once."), time.sleep(0.1)                
 
 
 def main():
@@ -986,7 +1005,7 @@ def main():
 
         elif user_input in ["game4", "game 4", "guess the song", "g4", "game_4"]:
             time.sleep(0.1)
-            guess_the_song()
+            print(guess_the_song())
 
         elif "a date" in user_input or "date me" in user_input:
             time.sleep(0.1)
@@ -998,14 +1017,14 @@ def main():
         elif user_input == "sys ac chad" or user_input == "activate chad":
             chad()
 
-        elif "song"in user_input:
-            chatbot_songs()
+        elif "song" in user_input:
+            print(chatbot_songs())
 
-        elif "movie"in user_input:
-            chatbot_movie()
+        elif "movie" in user_input:
+            print(chatbot_movie())
 
-        elif "book"in user_input:
-            chatbot_book()
+        elif "book" in user_input:
+            print(chatbot_book())
 
         elif "bmi" in user_input:
             bmi_check()
