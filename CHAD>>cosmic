@@ -63,7 +63,7 @@ responses = {
     }
 
 
-#this function is the primary source of generic responses of Cosmic
+#this function is the primary source of generic responses of Cosmic - DONE
 def get_response(user_input):
     
     #list all currently implemented commands
@@ -134,11 +134,11 @@ def get_response(user_input):
         return random.choice(responses["thanks"])
 
     #response to i am not good
-    elif "not doing well" in user_input or "not good" in user_input or "not fine" in user_input or "not well" in user_input:
+    elif "not doing well" in user_input or "not good" in user_input or "not fine" in user_input or "not well" in user_input or "not great" in user_input:
         return "I hope you feel better soon. Is there anything I could help with?"
 
     #response to i am good
-    elif "good" in user_input or "fine" in user_input or "well" in user_input:      
+    elif "good" in user_input or "fine" in user_input or "well" in user_input or "great" in user_input:      
         return "Glad to know that you are doing well. Anything I can help you with?"
 
     #who da devs
@@ -203,7 +203,7 @@ def get_response(user_input):
         return random.choice(responses["default"])
 
 
-#guess the number game
+#function for guess the number game - DONE
 def guess_the_number():
     print("\033[1m\033[34mCosmic\033[37m\033[22m   Alright! Let's play guess the number."), time.sleep(0.1)
     number_to_guess = random.randint(1, 100)                                        #The computer picks a random number between 1 and 100
@@ -246,7 +246,7 @@ def guess_the_number():
     print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Anything else I could do for you?"), time.sleep(0.1)
 
 
-
+#function for quiz game
 def quiz():
     q_prompts = {
         1: "Which country has the highest life expectancy?\n\t\ta. Honk Kong\n\t\tb. Macao\n\t\tc. Japan\n\t\td. Pakistan",
@@ -354,7 +354,7 @@ def quiz():
         return "\n\033[1m\033[34mCosmic\033[37m\033[22m   That's all the questions I have for you right now. Anything else I could help you with?"
 
 
-
+#function for guess the song game
 def guess_the_song():
     s_promts = {
         1: "         I must've called a thousand times\n         To tell you I'm sorry for everything that I've done\n         But when I call, you never seem to be home",
@@ -369,7 +369,7 @@ def guess_the_song():
         10: "         Not tryna be indie, not tryna be cool\n         Just tryna be in this, tell me, are you too?\n         Can you feel where the wind is? Can you feel it through",
         11: "         Don't cut me down, throw me out, leave me here to waste\n         I once was a man with dignity and grace\n         Now I'm slippin' through the cracks of your cold embrace\n         So please, please",
         12: "         Lately, I've been, I've been losin' sleep\n         Dreamin' about the things that we could be\n         But baby, I've been, I've been prayin' hard",
-        13: "         YYeah, do it for your people, do it for your pride\n         Are you ever gonna know if you never even try?\n         Do it for your country, do it for your name\n         'Cause there's gonna be a day",
+        13: "         Yeah, do it for your people, do it for your pride\n         Are you ever gonna know if you never even try?\n         Do it for your country, do it for your name\n         'Cause there's gonna be a day",
         14: "         My name's Blurryface and I care what you think\n         My name's Blurryface and I care what you think\n         Wish we could turn back time\n         To the good old days",
         15: "         It starts with\n         One thing, I don't know why\n         Doesn't even matter how hard you try\n         Keep that in mind, I designed this rhyme\n         To explain in due time",
         16: "         You talkin' money, need a hearin' aid\n         You talkin' 'bout me, I don't see the shade\n         Switch up my style, I take any lane\n         I switch up my cup, I kill any pain",
@@ -380,7 +380,7 @@ def guess_the_song():
         21: "         All my life, you stood by me\n         When no one else was ever behind me\n         All these lights, they can't blind me",
         22: "         Don't wanna let you down, but I am hell-bound\n         Though this is all for you, don't wanna hide the truth\n         No matter what we breed, we still are made of greed\n         This is my kingdom come, this is my kingdom come",
         23: "         I'm bulletproof, nothing to lose\n         Fire away, fire away\n         Ricochet, you take your aim\n         Fire away, fire away",
-        24: "         But she said, \"Where d'you wanna go?\n         How much you wanna risk?\"\n         I'm not looking for somebody with some superhuman gifts",
+        24: "         But she said, \"Where d'you wanna go? How much you wanna risk?\n         I'm not looking for somebody with some superhuman gifts\n         Some superhero, some fairytale bliss\n         Just something I can turn to, somebody I can miss\"",
     }
     
     s_ans = {
@@ -595,7 +595,7 @@ def tictactoe():
             break
 
 
-#function to recommend songs
+#function to recommend songs - DONE
 def chatbot_songs():
     while True:
         time.sleep(0.1)
@@ -640,7 +640,7 @@ def chatbot_songs():
             break
 
 
-#function to recommend books
+#function to recommend books - DONE
 def chatbot_book():
     while True:
         time.sleep(0.1)
@@ -681,7 +681,7 @@ def chatbot_book():
             break
 
 
-#function to recommend movies
+#function to recommend movies - DONE
 def chatbot_movie():
     while True:
         time.sleep(0.1)
@@ -722,7 +722,49 @@ def chatbot_movie():
             break
 
 
-#time function to know what time/day/date/month/year it is
+#function to check bmi - DONE
+def bmi_check():
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Let's find out your BMI then!")
+
+    #takes the user's weight
+    while True:
+        try:
+            time.sleep(0.1)
+            input_weight= float(input("\033[1m\033[34mCosmic\033[37m\033[22m   Enter your Weight (in kg)\n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
+            weight= input_weight*2.20462262
+            break
+        except:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Please enter a valid value.")
+
+    #takes the user's height
+    while True:
+        try:
+            time.sleep(0.1)
+            input_height= float(input("\033[1m\033[34mCosmic\033[37m\033[22m   Enter your Height (in cm)\n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
+            height= input_height*0.39370079
+            break
+        except:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Please enter a valid value.")        
+
+    bmi=(703*weight)/height**2
+
+    #prints the result
+    if bmi<18.5:
+        print(f"\033[1m\033[34mCosmic\033[37m\033[22m  Your BMI is {round(bmi, 2)} (Underweight)"), time.sleep(0.1)
+        print("\033[1m\033[34mCosmic\033[37m\033[22m   Please take care of yourself. Adopt a balanced diet with regular meals and engage in reugular physical excercise."),time.sleep(0.1)
+
+    elif bmi>=18.5 and bmi<=24.9:
+        print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Your BMI is {round(bmi, 2)} (Normal weight)"), time.sleep(0.1)
+        print("\033[1m\033[34mCosmic\033[37m\033[22m   Nice! You most likely take care of yourself. Continue doing so!"), time.sleep(0.1)
+ 
+    elif bmi>=25:
+        print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Your BMI is {round(bmi, 2)} (Overweight)"), time.sleep(0.1)
+        print("\033[1m\033[34mCosmic\033[37m\033[22m   Please take care of yourself. Try balancing your diet and exercise regularly. Seek support services if necessary."), time.sleep(0.1)
+
+
+#time function to know what time/day/date/month/year it is - DONE
 def what_time(user_input):
     cosmic_time = time.localtime()
 
@@ -777,7 +819,7 @@ def what_time(user_input):
         print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Today is {day}")
 
 
-#a secret rude persona, the readability of this part of the code isn't great due to the text formatting
+#a secret rude persona, the readability of this part of the code isn't great due to the text formatting - DONE
 def chad():
 #type "sys ac chad" or "activate chad" to activate chad
 #type "sys cmds" for chad's commands
@@ -964,6 +1006,9 @@ def main():
 
         elif "book"in user_input:
             chatbot_book()
+
+        elif "bmi" in user_input:
+            bmi_check()
 
         elif "bye" in user_input:
             time.sleep(0.1)
