@@ -1,4 +1,3 @@
-
 import random  #this will allow us to work with anything that's required to be random
 import time    #this will allow us to add artificial pauses & delays in Cosmic's responses, along with info about the time
 
@@ -48,6 +47,8 @@ responses = {
              "Adolf Hitler was nominated for the Nobel Peace Prize", "The world's largest waterfall is underwater"],
 
     "goodbye": ["Goodbye! Have a great day!", "See you later! Take care!", "It was nice talking to you! Goodbye!"],
+
+    "animals":["Cats","Dogs","Tigers","Giraffe","Lions","Horse","Red Panda","Cow"],
 
     "jokes":["What happens to illegally parked frog?         It gets toad away.",
              "Why can't you trust an atom?\n         Because they make up literally everything.",
@@ -135,10 +136,16 @@ def get_response(user_input):
     #response to i am not good
     elif "not doing well" in user_input or "not good" in user_input or "not fine" in user_input or "not well" in user_input:
         return "I hope you feel better soon. Is there anything I could help with?"
+    
+    elif "nice" in user_input:
+        return "Thanks!, Can I help you with anything else?"
 
     #response to i am good
     elif "good" in user_input or "fine" in user_input or "well" in user_input:      
         return "Glad to know that you are doing well. Anything I can help you with?"
+    
+    elif "like animals" in user_input:
+        return f"Yes I do like animals especially {random.choice(responses["animals"])}"
 
     #who da devs
     elif "developers" in user_input:                                                
