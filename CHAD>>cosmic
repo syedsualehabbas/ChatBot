@@ -1,7 +1,7 @@
 import random  #this will allow us to work with anything that's required to be random
 import time    #this will allow us to add artificial pauses & delays in Cosmic's responses, along with info about the time
 
-#these are the color codes (escape keys) we have used can use
+#these are the color codes (escape keys) we have used
 """ 
 --------------------------------------------------
 -------------------------->>>>>> text color <<<<<<           
@@ -133,6 +133,7 @@ def get_response(user_input):
     elif "thank" in user_input:
         return random.choice(responses["thanks"])
 
+    #response to whatever this is
     elif "happy birthday" in user_input:
         return "Happy Birthday! Wishing you a day filled with laughter, joy, and all your favorite things. Enjoy your special day to the fullest!"
 
