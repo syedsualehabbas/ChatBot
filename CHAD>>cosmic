@@ -1,5 +1,9 @@
+# \033[1m\033[90mYou\033[37m\033[22m --  Replace with "You:" when working on the program to increase readability
+# \033[1m\033[34mCosmic\033[37m\033[22m -- Replace with "Cosmic: " when working on the program to increase readability
+
 import random  #this will allow us to work with anything that's required to be random
 import time    #this will allow us to add artificial pauses & delays in Cosmic's responses, along with info about the time
+
 #these are the color codes (escape keys) we have used for cosmic
 """ 
 --------------------------------------------------
@@ -22,11 +26,13 @@ I => "\033[3m",
 IOFF => "\033[23m"
 
 """
+
+#-------------------------------
 #actual program starts from here
 #-------------------------------
 
 
-#global variable to make sure the get_responses function does not override any addition
+#global variable to make sure that get_responses function does not override any addition
 user_name = None   
 
 
@@ -148,33 +154,6 @@ def get_response(user_input):
     elif "introduc" in user_input or "who are you" in user_input:                   
         return "I'm Cosmic, a chatbot! How can i help you today?"
     
-    #basic calculator
-    elif "calc" in user_input:                                                      
-        while True:
-            op = input(("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a basic expression\n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
-            
-            #try & except statements to see if the expression is valid
-            try: 
-                ans = eval(op)
-                time.sleep(0.1)
-                print(f"\033[1m\033[34mCosmic\033[37m\033[22m   The result is {round(ans, 3)}")            
-                retry = str(input("\033[1m\033[34mCosmic\033[37m\033[22m   Do you want to enter another expression? (Yes/No)\n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
-                if retry == ("yes" or "y"): continue
-                
-            except ZeroDivisionError:
-                time.sleep(0.1)
-                print("\033[1m\033[34mCosmic\033[37m\033[22m   You tried dividing by zero!"), time.sleep(0.1)
-                retry = str(input("\033[1m\033[34mCosmic\033[37m\033[22m   Do you want to enter another expression? (Yes/No) \n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
-                if retry == ("yes" or "y"): continue
-
-            except:
-                time.sleep(0.1)
-                print("\033[1m\033[34mCosmic\033[37m\033[22m   That is an invalid expression."), time.sleep(0.1)
-                retry = str(input("\033[1m\033[34mCosmic\033[37m\033[22m   Do you want to enter another expression? (Yes/No)\n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
-                if retry == ("yes" or "y"): continue
-
-            return f"Anything else I could help you with?" 
-    
     #Enters the users name into user_name
     elif "my name is" in user_input:                                                
         global user_name 
@@ -202,9 +181,43 @@ def get_response(user_input):
         return random.choice(responses["default"])
 
 
+#basic calculator  
+def calculator():                                                   
+    while True:
+        op = input(("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a basic expression\n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
+        
+        #try & except statements to see if the expression is valid
+        try: 
+            ans = eval(op)
+            time.sleep(0.1)
+            print(f"\033[1m\033[34mCosmic\033[37m\033[22m   The result is {round(ans, 3)}")            
+            
+        except ZeroDivisionError:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   You tried dividing by zero!"), time.sleep(0.1)
+        except:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   That is an invalid expression."), time.sleep(0.1)
+
+        #checking if user wants to make another calculation
+        print("\033[1m\033[34mCosmic\033[37m\033[22m   Do you want to enter another expression? (Yes/No)")
+        while True:
+            time.sleep(0.1)
+            calc_again = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
+
+            if calc_again == "yes" or calc_again =="y":
+                break                 
+            elif calc_again == "no" or calc_again =="n":
+                time.sleep(0.1)
+                return "\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+            else:
+                time.sleep(0.1)
+                print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Please type 'Yes' or 'No'")
+
+
 #function for guess the number game - DONE
 def guess_the_number():
-    print("\033[1m\033[34mCosmic\033[37m\033[22m   Alright! Let's play guess the number."), time.sleep(0.1)
+    print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright! Let's play guess the number."), time.sleep(0.1)
     number_to_guess = random.randint(1, 100)                                        #The computer picks a random number between 1 and 100
     attempts = 0
     print("\033[1m\033[34mCosmic\033[37m\033[22m   I've thought of a number between 1 and 100. Try to guess it!")
@@ -216,6 +229,7 @@ def guess_the_number():
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Please enter a valid number."), time.sleep(0.1)                        
             continue
+
         #add +1 the user makes an attempt
         attempts += 1
 
@@ -341,7 +355,7 @@ def quiz():
                      break     #takes to top of program                
                 elif q_play == "no" or q_play =="n":
                     time.sleep(0.1)
-                    return "\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+                    return "\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
                 #if user types something except for yes or no
                 else:
                     time.sleep(0.1)
@@ -366,7 +380,7 @@ def quiz():
             #if user doesnt want to play anymore
             elif "stop" in q_user_ans:
                 time.sleep(0.1)
-                return "\033[1m\033[34mCosmic\033[37m\033[22m   We'll end it here then! What else can I do for you?"
+                return "\n\033[1m\033[34mCosmic\033[37m\033[22m   We'll end it here then! What else can I do for you?"
 
             #if user's answer is incorrect
             else:
@@ -375,11 +389,12 @@ def quiz():
 
         #sowwrrryy questions finished
         time.sleep(0.1)
-        return "\033[1m\033[34mCosmic\033[37m\033[22m   That's all the questions I have for you right now. Anything else I could help you with?"
+        return "\n\033[1m\033[34mCosmic\033[37m\033[22m   That's all the questions I have for you right now. Anything else I could help you with?"
 
 
 #function for guess the song game - DONE
 def guess_the_song():
+
     #questions for guess song game
     s_promts = {
         1: "         I must've called a thousand times\n         To tell you I'm sorry for everything that I've done\n         But when I call, you never seem to be home",
@@ -511,7 +526,7 @@ def guess_the_song():
             #if user wants to end the game
             elif s_user_ans == "stop":
                 time.sleep(0.1)
-                return "\033[1m\033[34mCosmic\033[37m\033[22m   We'll end it here then! What else can I do for you?"
+                return "\n\033[1m\033[34mCosmic\033[37m\033[22m   We'll end it here then! What else can I do for you?"
 
             #if users answer is incorrect
             else:
@@ -523,7 +538,7 @@ def guess_the_song():
 
 
 #2 player tic-tac-toe. Basic functionality learnt from CodeWithHarry's tutorial. Upgraded by ourselves (error checking, better drawing system, etc.)
-def tictactoe():    # - DONE
+def tictactoe():    
 
     #to check if the required three values of x_state or o_state add up to 3 or not
     def sum(a,b,c):
@@ -564,6 +579,7 @@ def tictactoe():    # - DONE
               return 0   
 
         return -1
+    
     # presentation of board changes when user inputs a number
     x_state =[0,0,0,0,0,0,0,0,0] 
     o_state =[0,0,0,0,0,0,0,0,0]
@@ -599,10 +615,12 @@ def tictactoe():    # - DONE
                         print("\033[1m\033[34mCosmic\033[37m\033[22m   You've already made a move there, try another location."), time.sleep(0.1)
                         continue
                     x_state[value-1] = 1
+
                 #if user enters number except for given numbers
                 else:
                     print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1) 
-                    continue      
+                    continue     
+
                 #break da prog
                 break
 
@@ -642,14 +660,14 @@ def tictactoe():    # - DONE
         if cwin == 1:
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   X won!"), time.sleep(0.2)
-            print("\033[1m\033[34mCosmic\033[37m\033[22m   What else can I do for you?")
+            print("\n\033[1m\033[34mCosmic\033[37m\033[22m   What else can I do for you?")
             break
 
         #when o wins
         elif cwin == 0:
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   O won!"), time.sleep(0.2)
-            print("\033[1m\033[34mCosmic\033[37m\033[22m   What else can I do for you?")
+            print("\n\033[1m\033[34mCosmic\033[37m\033[22m   What else can I do for you?")
             break
 
         #turn decreases
@@ -659,11 +677,11 @@ def tictactoe():    # - DONE
         if turn == 0:
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Valiant efforts, but unfortunately it ended in a draw."), time.sleep(0.2)
-            print("\033[1m\033[34mCosmic\033[37m\033[22m   What else can I do for you?")
+            print("\n\033[1m\033[34mCosmic\033[37m\033[22m   What else can I do for you?")
             break   #end the damn game
 
 
-#function to recommend songs - DONE
+#function to recommend songs
 def chatbot_songs():
     while True:
         time.sleep(0.1)
@@ -705,13 +723,13 @@ def chatbot_songs():
                 break        
             elif again == "no" or again =="n":
                 time.sleep(0.1)
-                return "\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+                return "\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
             else:
                 time.sleep(0.1)
                 print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Please type 'Yes' or 'No'")
 
 
-#function to recommend books - DONE
+#function to recommend books
 def chatbot_book():
     while True:
         time.sleep(0.1)
@@ -749,13 +767,13 @@ def chatbot_book():
                 break        
             elif again == "no" or again =="n":
                 time.sleep(0.1)
-                return "\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+                return "\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
             else:
                 time.sleep(0.1)
                 print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Please type 'Yes' or 'No'")
 
 
-#function to recommend movies - DONE
+#function to recommend movies
 def chatbot_movie():
     while True:
         time.sleep(0.1)
@@ -793,15 +811,15 @@ def chatbot_movie():
                 break        
             elif again == "no" or again =="n":
                 time.sleep(0.1)
-                return "\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+                return "\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
             else:
                 time.sleep(0.1)
                 print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Please type 'Yes' or 'No'")
 
 
-#function to check bmi - DONE
+#function to check bmi
 def bmi_check():
-    print("\033[1m\033[34mCosmic\033[37m\033[22m   Let's find out your BMI then!")
+    print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Let's find out your BMI then!")
 
     #takes the user's weight
     while True:
@@ -829,24 +847,24 @@ def bmi_check():
 
     #prints the result
     if bmi<18.5:
-        print(f"\033[1m\033[34mCosmic\033[37m\033[22m  Your BMI is {round(bmi, 2)} (Underweight)"), time.sleep(0.1)
+        print(f"\n\033[1m\033[34mCosmic\033[37m\033[22m  Your BMI is {round(bmi, 2)} (Underweight)"), time.sleep(0.1)
         print("\033[1m\033[34mCosmic\033[37m\033[22m   Please take care of yourself. Adopt a balanced diet with regular meals and engage in reugular physical excercise."),time.sleep(0.1)
 
     elif bmi>=18.5 and bmi<=24.9:
-        print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Your BMI is {round(bmi, 2)} (Normal weight)"), time.sleep(0.1)
+        print(f"\n\033[1m\033[34mCosmic\033[37m\033[22m   Your BMI is {round(bmi, 2)} (Normal weight)"), time.sleep(0.1)
         print("\033[1m\033[34mCosmic\033[37m\033[22m   Nice! You most likely take care of yourself. Continue doing so!"), time.sleep(0.1)
  
     elif bmi>=25:
-        print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Your BMI is {round(bmi, 2)} (Overweight)"), time.sleep(0.1)
+        print(f"\n\033[1m\033[34mCosmic\033[37m\033[22m   Your BMI is {round(bmi, 2)} (Overweight)"), time.sleep(0.1)
         print("\033[1m\033[34mCosmic\033[37m\033[22m   Please take care of yourself. Try balancing your diet and exercise regularly. Seek support services if necessary."), time.sleep(0.1)
 
-#time function to know what time/day/date/month/year it is - DONE
+#time function to know what time/day/date/month/year it is  
 def what_time(user_input):
     cosmic_time = time.localtime()
 
-#the result of above function is the following tuple
-#time.struct_time(tm_year=2024, tm_mon=7, tm_mday=30, tm_hour=20, tm_min=39, tm_sec=13, tm_wday=1, tm_yday=212, tm_isdst=0)
-#                     [0]          [1]        [2]         [3]        [4]         [5]       [6]         [7]          [8]
+    #the result of above function is the following tuple
+    #time.struct_time(tm_year=2024, tm_mon=7, tm_mday=30, tm_hour=20, tm_min=39, tm_sec=13, tm_wday=1, tm_yday=212, tm_isdst=0)
+    #                     [0]          [1]        [2]         [3]        [4]         [5]       [6]         [7]          [8]
 
     #Cosmic checks for the year
     if "year" in user_input:                                    
@@ -895,7 +913,7 @@ def what_time(user_input):
         print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Today is {day}")
 
 
-#a secret rude persona, the readability of this part of the code isn't great due to the text formatting - DONE
+#a secret rude persona, the readability of this part of the code isn't great due to the text formatting
 def chad():
 #type "sys ac chad" or "activate chad" to activate chad
 #type "sys cmds" for chad's commands
@@ -915,7 +933,7 @@ def chad():
         if user_input == "sys cmds":
             print("""\n\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mFollowing are commands\033[23m \033[3m\033[31mChad\033[37m\033[23m \033[3mwill respond to:
           \tcommands              bye
-          \trude                  game
+          \trude                  play a game
           \tdate me               die
           \tdeactivate chad       im bored
           \tim jumping            im sad 
@@ -946,11 +964,11 @@ def chad():
 
         #response to game
         elif "game" in user_input:
-            print("\033[1m\033[31mChad\033[37m\033[22m     Game? My name isn't Cosmic. Find a friend to play games with."), time.sleep(0.1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     Find a friend to play games with."), time.sleep(0.1)
 
         #response to do you know cosmic  
         elif "do you know cosmic" in user_input:
-            print("\033[1m\033[31mChad\033[37m\033[22m     I'm not a phonebook.")
+            print("\033[1m\033[31mChad\033[37m\033[22m     He's my servant.")
 
         #response to die
         elif "die" in user_input:
@@ -962,20 +980,20 @@ def chad():
 
         #response to sad
         elif "sad" in user_input:
-            print("\033[1m\033[31mChad\033[37m\033[22m     It is important to know that I absolutely do not care"), time.sleep(0.1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     It is important to know that I absolutely do not care."), time.sleep(0.1)
 
         #response to commands
         elif "commands" in user_input or "cmds" in user_input:
-            print("\033[1m\033[31mChad\033[37m\033[22m     I dont work for you. Go order someone else"), time.sleep(0.1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     I dont work for you. Go order someone else."), time.sleep(0.1)
 
         #response to hi
         elif "a date" in user_input or "date me" in user_input:
             print("\033[1m\033[31mChad\033[37m\033[22m     Ever seen yourself in the mirror?"), time.sleep(0.1)
-            print("\033[3m\033[35mSystem\033[37m\033[23m   \033[3mMein na sehta\033[23m"), time.sleep(0.1)     
+            print("\033[3m\033[35mSystem\033[37m\033[23m   \033[3mMein na sehta.\033[23m"), time.sleep(0.1)     
 
         #response to storytime
         elif "storytime" in user_input or "story" in user_input:
-            print("\033[1m\033[31mChad\033[37m\033[22m     Aha tamatar bare mazedar. Lal tamatar bare mazedar"),time.sleep(0.1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     No."),time.sleep(0.1)
 
         #response to time
         elif "time" in user_input:
@@ -1031,7 +1049,7 @@ def chad():
         else:
             print("\033[1m\033[31mChad\033[37m\033[22m     Say something comprenshible for once."), time.sleep(0.1)                
 
-#to call out each function - DONE
+#to call out each function
 def main(): 
     print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mLoading \033[3m\033[34mCosmic\033[37m\033[23m"), time.sleep(1.5)
     print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mLoading completed\033[23m"), time.sleep(0.2)
@@ -1095,11 +1113,14 @@ def main():
         elif "bmi" in user_input:
             bmi_check()
 
-        # goodbye forgodsake gooooo
+        # goodbye for God's sake gooooo
         elif "bye" in user_input:
             time.sleep(0.1)
             print(f"\033[1m\033[34mCosmic\033[37m\033[22m   {random.choice(responses['goodbye'])}")
             exit()
+
+        elif "calc" in user_input:
+            print(calculator())
 
         else:
             response = get_response(user_input)
@@ -1107,11 +1128,5 @@ def main():
             print("\033[1m\033[34mCosmic\033[37m\033[22m  ", response)
             
 
-# thank god 
+#thank God im done commenting this  
 main()
-
-# \033[1m\033[90mYou\033[37m\033[22m --  Replace with "You:" when working on the program
-# \033[1m\033[34mCosmic\033[37m\033[22m -- Replace with "Cosmic: " when working on the program
-
-# To replace all "Cosmic", select the one in LINE 74 and hold CTRL+D until you reach the end of the main. (DO NOT REPLACE THE ONES IN HERE)
-# To replace all "You", do the same as above (with appropriate selection duh)
