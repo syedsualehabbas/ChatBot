@@ -378,8 +378,9 @@ def quiz():
         return "\033[1m\033[34mCosmic\033[37m\033[22m   That's all the questions I have for you right now. Anything else I could help you with?"
 
 
-#function for guess the song game
+#function for guess the song game - DONE
 def guess_the_song():
+    #questions for guess song game
     s_promts = {
         1: "         I must've called a thousand times\n         To tell you I'm sorry for everything that I've done\n         But when I call, you never seem to be home",
         2: "         Tryna strike a cord and it's probably A-Minor",
@@ -406,7 +407,7 @@ def guess_the_song():
         23: "         I'm bulletproof, nothing to lose\n         Fire away, fire away\n         Ricochet, you take your aim\n         Fire away, fire away",
         24: "         But she said, \"Where d'you wanna go? How much you wanna risk?\n         I'm not looking for somebody with some superhuman gifts\n         Some superhero, some fairytale bliss\n         Just something I can turn to, somebody I can miss\"",
     }
-    
+    #answers for guess song game
     s_ans = {
         1: "hello",                        2: "not like us",                 3: "blinding lights",                 4: "circles",                 
         5: "dandelions",                   6: "humble",                      7: "perfect",                         8: "stay",                 
@@ -415,7 +416,7 @@ def guess_the_song():
         17: "sad!",                        18: "mockingbird",                19: "sunflower",                      20: "wake me up",
         21: "drag me down",                22: "demons",                     23: "titanium",                       24: "something just like this",
     }
-
+    
     s_artist = {
         1: "Adele",                     2: "Kendrick Lamar",                 3: "The Weeknd",                 4: "Post Malone",                 
         5: "Ruth B",                    6: "Kendrick Lamar",                 7: "Ed Sheeran",                 8: "The Kid LAROI & Justin Bieber",                 
@@ -424,41 +425,50 @@ def guess_the_song():
         17: "XXXTentacion",             18: "Eminem",                        19: "Post Malone & Swae Lee",    20: "Avicii",
         21: "One Direction",            22: "Imagine Dragons",               23: "David Guetta & Sia",        24: "The Chainsmokers & Coldplay",
     }
-
+     # loading of game wait pleeek
     print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Loading Game 4 - Guess the song", end="\r"), time.sleep(0.6)
     print("\033[1m\033[34mCosmic\033[37m\033[22m   Loading complete!               ", end="\r"), time.sleep(0.6)
     print("\033[1m\033[34mCosmic\033[37m\033[22m   Game 4 -- Cosmic's Guess the song         "),time.sleep(0.2)
     print("\033[1m\033[34mCosmic\033[37m\033[22m   Choose a mode (1 or 2)\n\t Mode 1: Random song (1)\n\t Mode 2: All songs   (2)")
                                                                                                                       
     while True:
+        # to check if user put mode 1 or 2
         try:
             s_mode = int(input("\033[\033[1m\033[90mYou\033[37m\033[22m      "))
             if s_mode == 1 or s_mode == 2:
-                break
+                #breaks the while loop and goes to desired mode 
+                break 
+
+            #if user puts something else than 1 or 2
             else:
                 time.sleep(0.1)
                 print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Pick '1' or '2'")
                 continue
+        #if user puts string instead of integer
         except ValueError:
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   You have to enter an integer. Pick '1' or '2'")
-            continue 
-    
+            continue    #takes to top of program to enter mode no. again
+    # for mode 1
     if s_mode == 1:
         time.sleep(0.1)    
         print("\033[1m\033[34mCosmic\033[37m\033[22m   I'll type lyrics, and you'll answer with the name of the song. Let's start."), time.sleep(0.1)
         while True:      
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Here are some lyrics:"), time.sleep(0.1)
 
+            #randomly choose question from 1 to 24
             s_no = random.randint(1, 24)
             print(f"\n{s_promts[s_no]}\n"), time.sleep(0.1)
 
+            #user inputs answer
             s_user_ans = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower().strip()
 
+            #if user answer is correct
             if s_user_ans == s_ans[s_no]:
                 time.sleep(0.1)
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's correct!")
 
+            #if user answer is incorrect
             else:
                 time.sleep(0.1)
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's unfortunately incorrect. \"{(s_ans[s_no]).title()}\" was the correct answer, which is a song by {s_artist[s_no]}.")
@@ -470,33 +480,40 @@ def guess_the_song():
                 time.sleep(0.1)
                 s_play = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
                 if s_play == "yes" or s_play =="y":
-                    break        
+                    break   #takes to top of program     
                 elif s_play == "no" or s_play =="n":
                     time.sleep(0.1)
                     return "\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
+                #if user writes something else than yes or no
                 else:
                     time.sleep(0.1)
                     print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Please type 'Yes' or 'No'")
 
             
-
+    #for mode 2
     if s_mode == 2:
         time.sleep(0.1)
         print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Lets get to it then. I'll types some lyrics, and you'll answer with the name of the song."), time.sleep(0.1)
         print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Type \"Stop\" to stop at any time")
-
+        
+        # displays questions from 1 to 24
         for s_auto in range(1,25,1):
             time.sleep(0.1)
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Lyrics:"), time.sleep(0.1)
             print(f"\n{s_promts[s_auto]}\n"), time.sleep(0.1)
             s_user_ans = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
 
+            #checks if user input is correct
             if s_user_ans == s_ans[s_auto]:
                 time.sleep(0.1)
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's correct!")
+
+            #if user wants to end the game
             elif s_user_ans == "stop":
                 time.sleep(0.1)
                 return "\033[1m\033[34mCosmic\033[37m\033[22m   We'll end it here then! What else can I do for you?"
+
+            #if users answer is incorrect
             else:
                 time.sleep(0.1)
                 print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's unfortunately incorrect. \"{(s_ans[s_auto]).title()}\" was the correct answer, which is a song by {s_artist[s_auto]}.")
