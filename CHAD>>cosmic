@@ -1,4 +1,3 @@
-
 import random  #this will allow us to work with anything that's required to be random
 import time    #this will allow us to add artificial pauses & delays in Cosmic's responses, along with info about the time
 
@@ -32,7 +31,7 @@ IOFF => "\033[23m"
 user_name = None   
 
 
-#responses the bot uses. Outside of any function because two functions use it
+#responses the bot uses. Outside of any function becuase two functions use it
 responses = {                                                               
     "hello": ["Hello!", "Hi there!", "Hey! How can I help you today?"],
 
@@ -48,8 +47,6 @@ responses = {
              "Adolf Hitler was nominated for the Nobel Peace Prize", "The world's largest waterfall is underwater"],
 
     "goodbye": ["Goodbye! Have a great day!", "See you later! Take care!", "It was nice talking to you! Goodbye!"],
-
-    "animals":["Cats","Dogs","Tigers","Giraffe","Lions","Horse","Red Panda","Cow"],
 
     "jokes":["What happens to illegally parked frog?         It gets toad away.",
              "Why can't you trust an atom?\n         Because they make up literally everything.",
@@ -95,6 +92,8 @@ def get_response(user_input):
          Game 2: A Simple Quiz --------------------------------------- (G2)
          ——————————————————————————————————————————————————————————————————
          Game 3: 2 Player TicTacToe ---------------------------------- (G3)
+         ——————————————————————————————————————————————————————————————————
+         Game 4: Guess the Song  ------------------------------------- (G4)
          ——————————————————————————————————————————————————————————————————"""
 
     #response to Salam
@@ -137,16 +136,10 @@ def get_response(user_input):
     #response to i am not good
     elif "not doing well" in user_input or "not good" in user_input or "not fine" in user_input or "not well" in user_input:
         return "I hope you feel better soon. Is there anything I could help with?"
-    
-    elif "nice" in user_input:
-        return "Thanks!, Can I help you with anything else?"
 
     #response to i am good
     elif "good" in user_input or "fine" in user_input or "well" in user_input:      
         return "Glad to know that you are doing well. Anything I can help you with?"
-    
-    elif "like animals" in user_input:
-        return f"Yes I do like animals especially {random.choice(responses["animals"])}"
 
     #who da devs
     elif "developers" in user_input:                                                
@@ -154,12 +147,12 @@ def get_response(user_input):
     
     #introduction
     elif "introduc" in user_input or "who are you" in user_input:                   
-        return "I'm Cosmic, a chatbot! How can I help you today?"
+        return "I'm Cosmic, a chatbot! How can i help you today?"
     
     #basic calculator
     elif "calc" in user_input:                                                      
         while True:
-            op = input(("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a basic expression ( + , - , * , / )\n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
+            op = input(("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a basic expression\n\033[\033[1m\033[90mYou\033[37m\033[22m      "))
             
             #try & except statements to see if the expression is valid
             try: 
@@ -264,7 +257,7 @@ def quiz():
         6: "What disease causes the brain to shrink?\n\t\ta. Rabies\n\t\tb. Bell's Palsy\n\t\tc. BTS Army\n\t\td. Alzheimer's",
         7: "How many bones do sharks have?\n\t\ta. 69\n\t\tb. 420\n\t\tc. 367\n\t\td. They don't have any bones",
         8: "Where is \"Batman\" city located?\n\t\ta. Turkey\n\t\tb. Cyprus\n\t\tc. North Korea\n\t\td. South Korea",
-        9: "Where is niger located?\n\t\ta. Wales\n\t\tb. Larkana\n\t\tc. Ireland\n\t\td. Africa",
+        9: "Where is Niger located?\n\t\ta. Nigeria\n\t\tb. Larkana\n\t\tc. Africa\n\t\td. Uganda",
         10: "Which animal can use its tongue to clean its ears?\n\t\ta. Giraffe\n\t\tb. Jellyfish\n\t\tc. Guinea Pig\n\t\td. Cockroach",
         11: "Where is Shitterton located?\n\t\ta. England\n\t\tb. Wales\n\t\tc. Scotland\n\t\td. India",
         12: "What is a group of flamingos called??\n\t\ta. Pink Party\n\t\tb. Flamboyance\n\t\tc. Dong\n\t\td. Daddies",
@@ -285,7 +278,7 @@ def quiz():
 
     q_ans = {
         1: "a",                 2: "b",                 3: "a",                 4: "d",                 5: "c",
-        6: "d",                 7: "d",                 8: "a",                 9: "a",                 10: "a",
+        6: "d",                 7: "d",                 8: "a",                 9: "c",                 10: "a",
         11: "a",                12: "b",                13: "d",                14: "c",                15: "b",  
         16: "a",                17: "a",                18: "a",                19: "b",                20: "b",
         21: "b",                22: "c",                23: "a",                24: "d",                25: "b",
@@ -294,8 +287,8 @@ def quiz():
     print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Loading Game 2 - A Simple Quiz", end="\r"), time.sleep(0.6)
     print("\033[1m\033[34mCosmic\033[37m\033[22m   Loading complete!               ", end="\r"), time.sleep(0.6)
     print("\033[1m\033[34mCosmic\033[37m\033[22m   Game 2 -- Cosmic's Quiz         "),time.sleep(0.2)
-    print("\033[1m\033[34mCosmic\033[37m\033[22m   Choose a mode (1 or 2)\n\t   Mode 1: Random question(1)\n\t   Mode 2: All questions(2)")
-
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Choose a mode (1 or 2)\n\t Mode 1: Random question (1)\n\t Mode 2: All questions   (2)")
+                                                                                                                        
     while True:
         try:
             q_mode = int(input("\033[\033[1m\033[90mYou\033[37m\033[22m      "))
@@ -333,8 +326,7 @@ def quiz():
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Do you want to play again? (Yes/No)")
             q_play = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
 
-            if q_play == "yes" or q_play =="y": 
-                continue
+            if q_play == "yes" or q_play =="y": continue              
             else:
                 time.sleep(0.1)
                 return "\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"
@@ -350,7 +342,7 @@ def quiz():
 
             if q_user_ans == q_ans[q_auto]:
                 time.sleep(0.1)
-                print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's right! \"{q_user_ans}\" is the correct answer.")
+                print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's right!")
             elif "stop" in q_user_ans:
                 time.sleep(0.1)
                 return "\033[1m\033[34mCosmic\033[37m\033[22m   We'll end it here then! What else can I do for you?"
@@ -362,7 +354,127 @@ def quiz():
         return "\n\033[1m\033[34mCosmic\033[37m\033[22m   That's all the questions I have for you right now. Anything else I could help you with?"
 
 
-#2 player tic-tac-toe. Basic functionality learnt from CodeWithHarry's tutorial. Error checking was added by ourselves.
+
+def guess_the_song():
+    s_promts = {
+        1: "         I must've called a thousand times\n         To tell you I'm sorry for everything that I've done\n         But when I call, you never seem to be home",
+        2: "         Tryna strike a cord and it's probably A-Minor",
+        3: "         The city's cold and empty\n         No one's around to judge me\n         I can't see clearly when you're gone",
+        4: "         We couldn't turn around\n         'Til we were upside down\n         I'll be the bad guy now\n         But, no, I ain't too proud",
+        5: "         Maybe it's the way you say my name\n         Maybe it's the way you play your game\n         But it's so good, I've never known anybody like you\n         But it's so good, I've never dreamed of nobody like you",
+        6: "         My left stroke just went viral\n         Right stroke put lil' baby in a spiral\n         Soprano C, we like to keep it on a high note\n         It's levels to it, you and I know",
+        7: "         Barefoot on the grass\n         Listening to our favorite song\n         When you said you looked a mess",
+        8: "         I do the same thing I told you that I never would\n         I told you I'd change, even when I knew I never could\n         I know that I can't find nobody else as good as you",
+        9: "         The old Taylor can't come to the phone right now\n         Why? Oh, 'cause she's dead!",
+        10: "         Not tryna be indie, not tryna be cool\n         Just tryna be in this, tell me, are you too?\n         Can you feel where the wind is? Can you feel it through",
+        11: "         Don't cut me down, throw me out, leave me here to waste\n         I once was a man with dignity and grace\n         Now I'm slippin' through the cracks of your cold embrace\n         So please, please",
+        12: "         Lately, I've been, I've been losin' sleep\n         Dreamin' about the things that we could be\n         But baby, I've been, I've been prayin' hard",
+        13: "         Yeah, you can be the greatest, you can be the best\n         You can beat the world, you can win the war",
+        14: "         My name's Blurryface and I care what you think\n         My name's Blurryface and I care what you think\n         Wish we could turn back time\n         To the good old days",
+        15: "         It starts with\n         One thing, I don't know why\n         Doesn't even matter how hard you try\n         Keep that in mind, I designed this rhyme\n         To explain in due time",
+        16: "         You talkin' money, need a hearin' aid\n         You talkin' 'bout me, I don't see the shade\n         Switch up my style, I take any lane\n         I switch up my cup, I kill any pain",
+        17: "         Who am I? Someone that's afraid to let go\n         You decide, if you're ever gonna let me know, yeah\n         Suicide, if you ever try to let go",
+        18: "         And your Mom was savin' money for you in a jar\n         Tryin' to start a piggy bank for you so you could go to college\n         Almost had a thousand dollars 'til someone broke in and stole it",
+        19: "         Thinkin' in a bad way, losin' your grip\n         Screamin' at my face, baby, don't trip\n         Someone took a big L, don't know how that felt\n         Lookin' at you sideways, party on tilt",
+        20: "         I tried carrying the weight of the world\n         But I only have two hands\n         Hope I get the chance to travel the world\n         But I don't have any plans",
+        21: "         All my life, you stood by me\n         When no one else was ever behind me\n         All these lights, they can't blind me",
+        22: "         Don't wanna let you down, but I am hell-bound\n         Though this is all for you, don't wanna hide the truth\n         No matter what we breed, we still are made of greed\n         This is my kingdom come, this is my kingdom come",
+        23: "         I'm bulletproof, nothing to lose\n         Fire away, fire away\n         Ricochet, you take your aim\n         Fire away, fire away",
+        24: "         But she said, \"Where d'you wanna go?\n         How much you wanna risk?\"\n         I'm not looking for somebody with some superhuman gifts",
+    }
+    
+    s_ans = {
+        1: "hello",                        2: "not like us",                 3: "blinding lights",                 4: "circles",                 
+        5: "dandelions",                   6: "humble",                      7: "perfect",                         8: "stay",                 
+        9: "look what you made me do",     10: "dusk till dawn",             11: "let me down slowly",             12: "counting stars",                
+        13: "hall of fame",                14: "stressed out",               15: "in the end",                     16: "starboy",
+        17: "sad!",                        18: "mockingbird",                19: "sunflower",                      20: "wake me up",
+        21: "drag me down",                22: "demons",                     23: "titanium",                       24: "something just like this",
+    }
+
+    s_artist = {
+        1: "Adele",                     2: "Kendrick Lamar",                 3: "The Weeknd",                 4: "Post Malone",                 
+        5: "Ruth B",                    6: "Kendrick Lamar",                 7: "Ed Sheeran",                 8: "The Kid LAROI & Justin Bieber",                 
+        9: "Taylor Swift",              10: "ZAYN & Sia",                    11: "Alec Benjamin",             12: "One Republic",                
+        13: "The Script & will.i.am",   14: "Twenty One Pilots",             15: "Linkin Park",               16: "The Weeknd & Daft Punk",
+        17: "XXXTentacion",             18: "Eminem",                        19: "Post Malone & Swae Lee",    20: "Avicii",
+        21: "One Direction",            22: "Imagine Dragons",               23: "David Guetta & Sia",        24: "The Chainsmokers & Coldplay",
+    }
+
+    print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Loading Game 4 - Guess the song", end="\r"), time.sleep(0.6)
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Loading complete!               ", end="\r"), time.sleep(0.6)
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Game 4 -- Cosmic's Guess the song         "),time.sleep(0.2)
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Choose a mode (1 or 2)\n\t Mode 1: Random song (1)\n\t Mode 2: All songs   (2)")
+                                                                                                                      
+    while True:
+        try:
+            s_mode = int(input("\033[\033[1m\033[90mYou\033[37m\033[22m      "))
+            if s_mode == 1 or s_mode == 2:
+                break
+            else:
+                time.sleep(0.1)
+                print("\033[1m\033[34mCosmic\033[37m\033[22m   That doesn't seem right. Pick '1' or '2'")
+                continue
+        except ValueError:
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   You have to enter an integer. Pick '1' or '2'")
+            continue 
+    
+    if s_mode == 1:
+        time.sleep(0.1)    
+        print("\033[1m\033[34mCosmic\033[37m\033[22m   I'll type lyrics, and you'll answer with the name of the song. Let's start."), time.sleep(0.1)
+        while True:      
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Here are some lyrics:"), time.sleep(0.1)
+
+            s_no = random.randint(1, 24)
+            print(f"\n{s_promts[s_no]}\n"), time.sleep(0.1)
+
+            s_user_ans = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower().strip()
+
+            if s_user_ans == s_ans[s_no]:
+                time.sleep(0.1)
+                print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's correct!")
+
+            else:
+                time.sleep(0.1)
+                print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's unfortunately incorrect. \"{(s_ans[s_no]).title()}\" was the correct answer, which is a song by {s_artist[s_no]}.")
+
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Do you want to play again? (Yes/No)")
+            q_play = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
+
+            if q_play == "yes" or q_play =="y": continue
+            else:
+                time.sleep(0.1)
+                print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?"), time.sleep(0.1)
+                break
+        
+    if s_mode == 2:
+        time.sleep(0.1)
+        print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Lets get to it then. I'll types some lyrics, and you'll answer with the name of the song."), time.sleep(0.1)
+        print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Type \"Stop\" to stop at any time")
+
+        for s_auto in range(1,25,1):
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Lyrics:"), time.sleep(0.1)
+            print(f"\n{s_promts[s_auto]}\n"), time.sleep(0.1)
+            s_user_ans = str(input("\033[\033[1m\033[90mYou\033[37m\033[22m      ")).lower()
+
+            if s_user_ans == s_ans[s_auto]:
+                time.sleep(0.1)
+                print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's correct!")
+            elif s_user_ans == "stop":
+                time.sleep(0.1)
+                print("\033[1m\033[34mCosmic\033[37m\033[22m   We'll end it here then! What else can I do for you?")
+            else:
+                time.sleep(0.1)
+                print(f"\033[1m\033[34mCosmic\033[37m\033[22m   That's unfortunately incorrect. \"{(s_ans[s_auto]).title()}\" was the correct answer, which is a song by {s_artist[s_auto]}.")
+
+        time.sleep(0.1)
+        print("\n\033[1m\033[34mCosmic\033[37m\033[22m   That's all the songs I have for you right now. Anything else I could help you with?")
+
+
+#2 player tic-tac-toe. Basic functionality learnt from CodeWithHarry's tutorial. Upgraded by ourselves (error checking, better drawing system, etc.)
 def tictactoe():    
 
     def sum(a,b,c):
@@ -415,7 +527,7 @@ def tictactoe():
                     value = int(input("\033[1m\033[31mX\033[37m\033[22m        "))
                     time.sleep(0.1)
                 except:
-                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number:"), time.sleep(0.1)
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1)
                     continue
                 
                 if (value <= 9) and (value >= 1):
@@ -428,7 +540,7 @@ def tictactoe():
                     x_state[value-1] = 1
 
                 else:
-                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number:"), time.sleep(0.1) 
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1) 
                     continue      
 
                 break
@@ -442,7 +554,7 @@ def tictactoe():
                     value = int(input("\033[1m\033[32mO\033[37m\033[22m        "))
                     time.sleep(0.1)
                 except:
-                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Please enter a valid number:"), time.sleep(0.1)
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Please enter a valid number"), time.sleep(0.1)
                     continue
                 
                 if (value <= 9) and (value >= 1):
@@ -455,7 +567,7 @@ def tictactoe():
                     o_state[value-1] = 1
 
                 else:
-                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number:"), time.sleep(0.1)
+                    print("\033[1m\033[34mCosmic\033[37m\033[22m   Enter a valid number"), time.sleep(0.1)
                     continue
 
                 break
@@ -483,7 +595,7 @@ def tictactoe():
             break
 
 
-
+#function to recommend songs
 def chatbot_songs():
     while True:
         time.sleep(0.1)
@@ -495,16 +607,17 @@ def chatbot_songs():
         #dictionary of all song recommendations
         recommendations={
             "indie": [" Dog Days Are Over by Florence The Machine", "Young Lion by Vampire Weekend", "First Day of My Life by Bright Eyes"],
-            "rocby Avik": [" Hotel California by Eagles", "Everlong by Foo Fighters", "Back in Black by AC/DC "],
+            "rock": [" Hotel California by Eagles", "Everlong by Foo Fighters", "Back in Black by AC/DC "],
             "pop": [" Levitating by Dua Lipa", "Shape of You by Ed Sheeran", "Bad Guy by Billie Eilish "],
             "classical": ["Clair de Lune by Claude Debussy", "Symphony No. 9 in D Minor, Op. 125 (Ode to Joy) by Ludwig van Beethoven", "The Four Seasons by Antonio Vivaldi"],
             "jazz": [" Take Five by Dave Brubeck", "So What by Miles Davis", "My Favorite Things by John Coltrane"],
             "hip hop": [" Sicko Mode by Travis Scott", "Lose Yourself by Eminem"," HUMBLE. by Kendrick Lamar "],
-            "electronic": [" Strobe by Deadmau5", "Titanium by David Guetta ft. Sia", "Levels cii"],
+            "electronic": [" Strobe by Deadmau5", "Titanium by David Guetta ft. Sia", "Levels by Avicii"],
             "folk": [" The A Team by Ed Sheeran", "If I Had a Boat by Lyle Lovett", "The Night We Met by Lord Huron"],
             "r&b": [" Ordinary People by John Legend", "We Belong Together by Mariah Carey", "U Got It Bad by Usher "],
             "acoustic": [" Fast Car by Tracy Chapman", "Blackbird by The Beatles", "Heartbeats” by José González"],
-            "k pop": [" Take Two by BTS", "Your Eyes Only by ENHYPEN, Miracle by TXT", "Supernatural by NEWJEANS", "Smart by LESSARAFIM"]
+            "kpop": [" Take Two by BTS", "Your Eyes Only by ENHYPEN", "Miracle by TXT", "Supernatural by NEWJEANS", "Smart by LESSARAFIM"],
+            "k pop": [" Take Two by BTS", "Your Eyes Only by ENHYPEN", "Miracle by TXT", "Supernatural by NEWJEANS", "Smart by LESSARAFIM"],
         }
     
         #checks if user put the genre from suggestions
@@ -522,11 +635,12 @@ def chatbot_songs():
         #checks user's response
         if again == "yes" or again == "y": continue
         else:
-            print("\033[1m\033[34mCosmic\033[37m\033[22m   Happy listening!")
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?")
             break
 
 
-
+#function to recommend books
 def chatbot_book():
     while True:
         time.sleep(0.1)
@@ -537,11 +651,11 @@ def chatbot_book():
 
         #dictionary of all book recommendations
         recommendations={
-            "romance" : ["Pride and Prejudice by Jane Austen", "Outlander by Diana Gabaldon, Me Before You by Jojo Moyes"],
+            "romance" : ["Pride and Prejudice by Jane Austen", "Outlander by Diana Gabaldon", "Me Before You by Jojo Moyes"],
             "biography" : ["The Diary of a Young Girl by Anne Frank", "Steve Jobs by Walter Isaacson", "Long Walk to Freedom by Nelson Mandela"],
             "fantasy" : ["The Hobbit by J.R.R. Tolkien,", "Harry Potter and the Sorcerer's Stone by J.K. Rowling", "A Game of Thrones by George R.R. Martin"],
-            "horror" : ["The Shining by Stephen King,", "Dracula by Bram Stoker", "The Haunting of Hill House by Shirley Jackson"],
-            "thriller" : ["The Girl with the Dragon Tattoo by Stieg Larsson, Gone Girl by Gillian Flynn,", "The Da Vinci Code by Dan Brown"],
+            "horror" : ["The Shining by Stephen King", "Dracula by Bram Stoker", "The Haunting of Hill House by Shirley Jackson"],
+            "thriller" : ["The Girl with the Dragon Tattoo by Stieg Larsson", "Gone Girl by Gillian Flynn,", "The Da Vinci Code by Dan Brown"],
             "classics" : ["Moby-Dick by Herman Melville,", "Jane Eyre by Charlotte Brontë,", "War and Peace by Leo Tolstoy"],
             "fiction": ["To Kill a Mockingbird by Harper Lee,", "1984 by George Orwell,", "The Great Gatsby by F. Scott Fitzgerald"],
             "non-fiction" : ["Sapiens: A Brief History of Humankind by Yuval Noah Harari,", "Educated by Tara Westover,", "Becoming by Michelle Obama"]
@@ -562,11 +676,12 @@ def chatbot_book():
         #checks user's response       
         if again == "yes" or again == "y": continue
         else:
-            print("\033[1m\033[34mCosmic\033[37m\033[22m   Happy reading! Anything else I could help you with?")
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?")
             break
 
 
-
+#function to recommend movies
 def chatbot_movie():
     while True:
         time.sleep(0.1)
@@ -602,9 +717,9 @@ def chatbot_movie():
         #checks user's response        
         if again == "yes" or again == "y": continue
         else:
-            print("\033[1m\033[34mCosmic\033[37m\033[22m   Happy watching! Anything else I could help you with?")
+            time.sleep(0.1)
+            print("\033[1m\033[34mCosmic\033[37m\033[22m   Alright, what else can I help you with?")
             break
-
 
 
 #time function to know what time/day/date/month/year it is
@@ -657,7 +772,7 @@ def what_time(user_input):
         elif cosmic_time[6] == 3:  day = "Thursday"
         elif cosmic_time[6] == 4:  day = "Friday"
         elif cosmic_time[6] == 5:  day = "Saturday"
-        elif cosmic_time[6] == 6:  day = "Munday"
+        elif cosmic_time[6] == 6:  day = "Sunday"
         time.sleep(0.1)
         print(f"\033[1m\033[34mCosmic\033[37m\033[22m   Today is {day}")
 
@@ -678,7 +793,7 @@ def chad():
         user_input = input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").lower()
         time.sleep(0.1)
 
-        #displays all commands of chad
+        #displays commands of chad
         if user_input == "sys cmds":
             print("""\n\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mFollowing are commands\033[23m \033[3m\033[31mChad\033[37m\033[23m \033[3mwill respond to:
           \tcommands              bye
@@ -717,7 +832,7 @@ def chad():
 
         #response to do you know cosmic  
         elif "do you know cosmic" in user_input:
-            print("\033[1m\033[31mChad\033[37m\033[22m     Yeah, your servant!")
+            print("\033[1m\033[31mChad\033[37m\033[22m     I'm not a phonebook.")
 
         #response to die
         elif "die" in user_input:
@@ -737,16 +852,20 @@ def chad():
 
         #response to hi
         elif "a date" in user_input or "date me" in user_input:
-            print("\033[1m\033[31mChad\033[37m\033[22m     Ever seen yourself in the mirror?"), time.sleep(0.5)
+            print("\033[1m\033[31mChad\033[37m\033[22m     Ever seen yourself in the mirror?"), time.sleep(0.1)
             print("\033[3m\033[35mSystem\033[37m\033[23m   \033[3mMein na sehta\033[23m"), time.sleep(0.1)     
 
         #response to storytime
         elif "storytime" in user_input or "story" in user_input:
-            print("\033[1m\033[31mChad\033[37m\033[22m     Yeah sure. Once upon a time I had to deal with this loser, who was asking me for a story time."),time.sleep(0.1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     Aha tamatar bare mazedar. Lal tamatar bare mazedar"),time.sleep(0.1)
+
+        #response to time
+        elif "time" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     Look at the damn clock or something. I ain't telling you shit."), time.sleep(0.1)
 
         #response to year/time/date/day/dmonth
-        elif "year" in user_input or "time" in user_input or "date" in user_input or "month" in user_input or "day" in user_input:
-            print("\033[1m\033[31mChad\033[37m\033[22m     Look at the damn clock or something. I ain't telling you shit."), time.sleep(0.1)
+        elif "year" in user_input or "day" in user_input or "month" in user_input:
+            print("\033[1m\033[31mChad\033[37m\033[22m     I'm not a calender. Go buy one."), time.sleep(0.1)
 
         #response to bye
         elif "bye" in user_input:
@@ -788,7 +907,7 @@ def chad():
             print("\033[1m\033[31mChad\033[37m\033[22m     Did you really think I was gonna go that easily?"), time.sleep(1)
             print("\033[1m\033[31mChad\033[37m\033[22m     What an idiot."), time.sleep(1)
             print("\033[1m\033[31mChad\033[37m\033[22m     I can't be deactivated."), time.sleep(1)
-            print("\033[1m\033[31mChad\033[37m\033[22m     What a Donkey."), time.sleep(0.1)
+            print("\033[1m\033[31mChad\033[37m\033[22m     Donkey."), time.sleep(0.1)
         
         #default response 
         else:
@@ -801,8 +920,8 @@ def main():
     print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mLoading \033[3m\033[34mCosmic\033[37m\033[23m"), time.sleep(1.5)
     print("\033[3m\033[35m>>> System\033[37m\033[23m   \033[3mLoading completed\033[23m"), time.sleep(0.2)
     print("\n\033[1m\033[34mCosmic\033[37m\033[22m   Welcome [user]!"), time.sleep(0.1)
-    print("\033[1m\033[34mCosmic\033[37m\033[22m   Type 'commands' or 'cmds' to view all the commands I support"), time.sleep(0.1)
-    print("\033[1m\033[34mCosmic\033[37m\033[22m   Type 'Bye' to exit the program\n"), time.sleep(0.1)
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Type 'commands' or 'cmds' to view all the commands I support."), time.sleep(0.1)
+    print("\033[1m\033[34mCosmic\033[37m\033[22m   Type 'Bye' to exit the program.\n"), time.sleep(0.1)
 
     while True:
         user_input = input("\033[\033[1m\033[90mYou\033[37m\033[22m      ").lower()
@@ -823,6 +942,10 @@ def main():
             print("\033[1m\033[34mCosmic\033[37m\033[22m   Game 3 -- 2 Player Tic-Tac-Toe          "), time.sleep(0.2)
             tictactoe()
 
+        elif user_input in ["game4", "game 4", "guess the song", "g4", "game_4"]:
+            time.sleep(0.1)
+            guess_the_song()
+
         elif "a date" in user_input or "date me" in user_input:
             time.sleep(0.1)
             print(f"\033[1m\033[34mCosmic\033[37m\033[22m   {random.choice(responses["date"])}")           
@@ -833,13 +956,13 @@ def main():
         elif user_input == "sys ac chad" or user_input == "activate chad":
             chad()
 
-        elif "song recommend" in user_input or "recommend song" in user_input or "songs recommend" in user_input:
+        elif "song"in user_input:
             chatbot_songs()
 
-        elif "movie recommend" in user_input or "recommend movie" in user_input or "movies recommend" in user_input:
+        elif "movie"in user_input:
             chatbot_movie()
 
-        elif "book recommend" in user_input or "recommend book" in user_input or "books recommend" in user_input:
+        elif "book"in user_input:
             chatbot_book()
 
         elif "bye" in user_input:
